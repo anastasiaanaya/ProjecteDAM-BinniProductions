@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import './HomePage.css';
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
 
 function HomePage() {
 
-    const [films, setFilms] = useState([null]);
+    const [films, setFilms] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -38,6 +38,7 @@ function HomePage() {
       <h2>Pel·lícules Ghibli</h2>
       <div className="films-grid">
         {films.map((film) => (
+          film &&(
             <a
             key={film.id}
             href={`/film/${film.id}`}
@@ -45,8 +46,9 @@ function HomePage() {
             title={film.title}
           >
             <img src={film.image} alt={film.title} className="film-image" />
-            <div className="film-title">{film.title}</div>
+            {/* <div className="film-title">{film.title}</div> */}
             </a>
+          )
     ))}
         </div>
       <Footer />
