@@ -1,0 +1,8 @@
+.main-header {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #004a99;
+  color: white;
+  box-sizing: border-box;
+  text-align: center;
+}
