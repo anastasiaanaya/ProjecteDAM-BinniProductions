@@ -3,7 +3,7 @@ import './Header.css';
 function Header() {
   return (
     <header className="main-header">
-      <h1>Demo: El Cicle de Dades</h1>
+      <h1>Pel·lícules Ghibli</h1>
     </header>
   );
 }

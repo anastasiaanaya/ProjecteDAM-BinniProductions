@@ -33,9 +33,9 @@ function HomePage() {
     
     
   return (
-    <div className="HomePage">
+    <div className="HomePage-container">
       <Header />
-      <h2>Pel·lícules Ghibli</h2>
+      
       <div className="films-grid">
         {films.map((film) => (
           film &&(
