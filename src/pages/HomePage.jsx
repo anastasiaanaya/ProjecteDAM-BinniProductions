@@ -33,7 +33,7 @@ function HomePage() {
     
     
   return (
-    <div className="HomePage-container">
+    <div className="homePage-container">
       <Header />
       
       <div className="films-grid">
