@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './PostList.css'; // Importem el CSS mobile-first
 
 // URL de l'API que farem servir
-const API_URL = 'https://ghibliapi.vercel.app/films';
+const API_URL = 'https://jsonplaceholder.typicode.com/posts';
 
 function PostList() {
   
