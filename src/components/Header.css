@@ -6,3 +6,10 @@
   box-sizing: border-box;
   text-align: center;
 }
+.filter {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #F2EDDA;
+  color: #FFFAF4;
+  box-sizing: border-box;
+}
