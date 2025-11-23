@@ -1,4 +1,5 @@
 import './Header.css';
+import filterIcon from './filter-icon.png';
 
 function Header() {
   return (
@@ -8,7 +9,7 @@ function Header() {
               <h1>Pel·lícules Ghibli</h1>
       </div>
       <div className="filter">
-      <img src="src\components\filter-icon.png" alt="Filter Icon" />
+      <img src={filterIcon} alt="Filter Icon" />
       </div>
     </header>
 
