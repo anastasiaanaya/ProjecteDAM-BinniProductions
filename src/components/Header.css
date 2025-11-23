@@ -1,3 +1,9 @@
+.header {
+position:sticky;
+left:0;
+top:0;
+}
+
 .main-header {
   width: 100%;
   padding: 1rem 2rem;
@@ -5,6 +11,7 @@
   color: #FFFAF4;
   box-sizing: border-box;
   text-align: center;
+
 }
 .filter {
   width: 100%;

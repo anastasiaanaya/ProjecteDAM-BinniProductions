@@ -2,7 +2,7 @@ import './Header.css';
 
 function Header() {
   return (
-    <header>
+    <header className="header">
 
       <div className="main-header">
               <h1>Pel·lícules Ghibli</h1>
