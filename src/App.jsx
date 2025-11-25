@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './components/Header';
-import HomePage from './pages/HomePage';
+import InfoFilm from './pages/InfoFilm';
 import Footer from './components/Footer';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div className="App">
      
       <main className="content">
-        <HomePage />
+        <InfoFilm />
       </main>
      
     </div>
