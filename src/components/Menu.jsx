@@ -1,5 +1,4 @@
 import './Menu.css';
-import navMenu from './navigation-menu.png';
 
 function Menu() {
   return (
