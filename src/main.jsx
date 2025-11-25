@@ -5,6 +5,6 @@ import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App /> {/*En un futur fer que directament et porti a HomePage o Loading i eliminar App*/}
+    <App />
   </StrictMode>,
 )
