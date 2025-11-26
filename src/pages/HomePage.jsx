@@ -20,19 +20,16 @@ const SORT_OPTIONS = {
 const sortFilms = (films, option) => {
   return [...films].sort((a, b) => {
     switch (option) {
-      // Data (release_date)
       case SORT_OPTIONS.DATA_ASC:
         return Number(a.release_date) - Number(b.release_date);
       case SORT_OPTIONS.DATA_DESC:
         return Number(b.release_date) - Number(a.release_date);
 
-      // Durada (running_time)
       case SORT_OPTIONS.TEMPS_ASC:
         return Number(a.running_time) - Number(b.running_time);
       case SORT_OPTIONS.TEMPS_DESC:
         return Number(b.running_time) - Number(a.running_time);
 
-      // Valoració (rt_score)
       case SORT_OPTIONS.VALORACIO_ASC:
         return Number(a.rt_score) - Number(b.rt_score);
       case SORT_OPTIONS.VALORACIO_DESC:
@@ -47,7 +44,7 @@ const sortFilms = (films, option) => {
 function HomePage() {
 
   const [films, setFilms] = useState([]);
-  const [sortOption, setSortOption] = useState(SORT_OPTIONS.DATA_ASC);
+  const [sortOption, setSortOption] = useState(""); // Mostrar 'Filtres' por defecto
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -76,25 +73,12 @@ function HomePage() {
 
   return (
     <div className="homePage-container">
-      <Header />
 
-      {/* SELECTOR DE FILTRE */}
-      <div className="filter-container">
-        <select
-          value={sortOption}
-          onChange={(e) => setSortOption(e.target.value)}
-          className="filter-select"
-        >
-          <option value={SORT_OPTIONS.DATA_ASC}>Data estrena ↑</option>
-          <option value={SORT_OPTIONS.DATA_DESC}>Data estrena ↓</option>
-
-          <option value={SORT_OPTIONS.TEMPS_ASC}>Durada ↑</option>
-          <option value={SORT_OPTIONS.TEMPS_DESC}>Durada ↓</option>
-
-          <option value={SORT_OPTIONS.VALORACIO_ASC}>Valoració ↑</option>
-          <option value={SORT_OPTIONS.VALORACIO_DESC}>Valoració ↓</option>
-        </select>
-      </div>
+      <Header 
+        sortOption={sortOption}
+        setSortOption={setSortOption}
+        SORT_OPTIONS={SORT_OPTIONS}
+      />
 
       <div className="films-grid">
         {sortedFilms.map((film) => (

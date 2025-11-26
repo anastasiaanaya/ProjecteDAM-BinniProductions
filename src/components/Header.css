@@ -1,7 +1,7 @@
 .header {
-position:sticky;
-left:0;
-top:0;
+  position: sticky;
+  left: 0;
+  top: 0;
 }
 
 .main-header {
@@ -11,12 +11,22 @@ top:0;
   color: #FFFAF4;
   box-sizing: border-box;
   text-align: center;
-
 }
+
 .filter {
   width: 100%;
   padding: 1rem 2rem;
   background-color: #F2EDDA;
-  color: #FFFAF4;
   box-sizing: border-box;
+}
+
+.filter-icon {
+  vertical-align: middle;
+  margin-right: 8px;
+  height: 24px;
+}
+
+.nmi-boto {
+  background-color: #F2EDDA;
+  border-radius: 8px;
 }
