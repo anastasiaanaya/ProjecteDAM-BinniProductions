@@ -47,6 +47,8 @@ function InfoFilm() {
 
   return (
     <div className="film-detail">
+        <Header />
+        
       <Link to="/">← Volver</Link>
       <h1>{film.title} ({film.original_title})</h1>
       <img src={film.movie_banner || film.image} alt={film.title} style={{maxWidth: '100%'}} />
@@ -63,6 +65,9 @@ function InfoFilm() {
       <p><strong>Locations:</strong> {related.locations.join(', ') || '—'}</p>
       <p><strong>Vehicles:</strong> {related.vehicles.join(', ') || '—'}</p>
       <p><strong>URL:</strong> <a href={film.url} target="_blank" rel="noreferrer">{film.url}</a></p>
+
+      <Menu />
+      <Footer />
     </div>
   );
 }
