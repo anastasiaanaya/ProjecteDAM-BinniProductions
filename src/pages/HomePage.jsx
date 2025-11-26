@@ -35,6 +35,7 @@ function HomePage() {
     
   return (
     <div className="homePage-container">
+      <Header />
       
       <div className="films-grid">
         {films.map((film) => (
@@ -43,18 +44,16 @@ function HomePage() {
             key={film.id}
             href={`/film/${film.id}`}
             className="film-card"
-            title={film.title}>
-            
+            title={film.title}
+          >
             <img src={film.image} alt={film.title} className="film-image" />
-            <Link to={`/film/${film.id}`} className="film-card"></Link>
-            {/* he copiat l'estrucutra de lo seu però crec que hauria d'anar vinculat
-            a la imatge i no així tal qual - pq nosaltres volem que quan es cliqui la imatge o div, 
-            navegui a la pagina de InfoFilm (aka PostDetail). Ella havia fet l'exemple amb "llegir més" i per això va com per separat, entenc */}
             {/* <div className="film-title">{film.title}</div> */}
             </a>
           )
     ))}
         </div>
+      <Menu />
+      <Footer />
     </div>
   );
 }
