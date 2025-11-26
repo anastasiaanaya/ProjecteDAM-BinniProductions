@@ -9,14 +9,16 @@ import Footer from './components/Footer';
 function App() {
   return (
     <div className="App">
-     <Header />
+     <Header />{/* No sé si al final el Header pot variar o no*/}
+     {/*si al final els filtres van per separat suposo que es posarien per aquí*/}
 
-     <Rouets>
+     <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/post/:id" element={<InfoFilm />}
-        <Route path="/" element={<Menu />} />
-     </Rouets>
-{/* FALTA MENU*/}
+        <Route path="/post/:id" element={<InfoFilm />} />
+     </Routes>
+
+     <Menu />{/* El menu aquí pq hi serà sempre*/}
+
       <Footer />
 
       {/* aixo es el que hi havia abans:
