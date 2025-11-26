@@ -12,7 +12,32 @@
     height: 48px;
     width: 140px;
     border-radius: 48px;
-    
+    display: flex;
+    align-items: center;
+}
+
+.home-page {
+    width: 50%;
+    height: 100%;
+    float: left;
+    position: relative;
+}
+
+.favourites-page {
+    width: 50%;
+    height: 100%;
+    float: right;
+    position: relative;
+}
+
+.selected-page:before {
+    background-color: #D1CBA9;
+    height: 44px;
+    width: 100%;
+    border-radius: 46px;
+    position: absolute;
+    content: "";
+    border: 2px solid #5C694D;
 }
 
 .search-bar {
@@ -22,4 +47,13 @@
     margin-left: auto;
     margin-right: 0;
     border-radius: 48px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar .search-icon {
+    color: white;
+    font-size: 32px;
+    line-height: 48px;
+    text-align: center;
 }
