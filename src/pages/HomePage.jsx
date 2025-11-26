@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Menu from '../components/Menu';
 import Footer from '../components/Footer';
 import './HomePage.css';
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
+
+
 
 // --- OPCIONES DEL FILTRE ---
 const SORT_OPTIONS = {
@@ -83,14 +86,14 @@ function HomePage() {
       <div className="films-grid">
         {sortedFilms.map((film) => (
           film && (
-            <a
+            <Link
               key={film.id}
               href={`/film/${film.id}`}
               className="film-card"
               title={film.title}
             >
               <img src={film.image} alt={film.title} className="film-image" />
-            </a>
+            </Link>
           )
         ))}
       </div>
