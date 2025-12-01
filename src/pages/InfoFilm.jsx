@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import './InfoFilm.css';
 
 const API_BASE = 'https://ghibliapi.vercel.app/films';
 
