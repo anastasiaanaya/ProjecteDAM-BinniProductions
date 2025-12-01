@@ -19,11 +19,12 @@ function InfoFilm() {
         const data = await res.json();
         setFilm(data);
 
-        // Función para resolver arrays de URLs
         const resolveUrls = async (urls = []) => {
           if (!urls.length) return [];
-          const results = await Promise.all(urls.map(u => fetch(u).then(r => r.ok ? r.json().catch(()=>null) : null).catch(()=>null)));
-          return results.map(r => r && (r.name || r.title) ? (r.name || r.title) : (r.url || 'sin nombre'));
+          const results = await Promise.all(
+            urls.map(u => fetch(u).then(r => (r.ok ? r.json().catch(() => null) : null)).catch(() => null))
+          );
+          return results.map(r => (r && (r.name || r.title) ? r.name || r.title : r?.url || 'sin nombre'));
         };
 
         const [people, species, locations, vehicles] = await Promise.all([
@@ -32,6 +33,7 @@ function InfoFilm() {
           resolveUrls(data.locations),
           resolveUrls(data.vehicles),
         ]);
+
         setRelated({ people, species, locations, vehicles });
       } catch (err) {
         setError(err.message);
@@ -39,6 +41,7 @@ function InfoFilm() {
         setLoading(false);
       }
     };
+
     fetchFilm();
   }, [id]);
 
@@ -48,27 +51,38 @@ function InfoFilm() {
 
   return (
     <div className="film-detail">
-        
-      <Link to="/">← Volver</Link>
-      <h1>{film.title} ({film.original_title})</h1>
-      <img src={film.movie_banner || film.image} alt={film.title} style={{maxWidth: '100%'}} />
-      <p><strong>ID:</strong> {film.id}</p>
-      <p><strong>Original title romanised:</strong> {film.original_title_romanised}</p>
-      <p><strong>Description:</strong> {film.description}</p>
-      <p><strong>Director:</strong> {film.director}</p>
-      <p><strong>Producer:</strong> {film.producer}</p>
-      <p><strong>Release date:</strong> {film.release_date}</p>
-      <p><strong>Running time:</strong> {film.running_time} min</p>
-      <p><strong>RT score:</strong> {film.rt_score}</p>
-      <p><strong>People:</strong> {related.people.join(', ') || '—'}</p>
-      <p><strong>Species:</strong> {related.species.join(', ') || '—'}</p>
-      <p><strong>Locations:</strong> {related.locations.join(', ') || '—'}</p>
-      <p><strong>Vehicles:</strong> {related.vehicles.join(', ') || '—'}</p>
-      <p><strong>URL:</strong> <a href={film.url} target="_blank" rel="noreferrer">{film.url}</a></p>
 
+      <div className="film-banner-wrap">
+        {/* Botón volver */}
+        <Link to="/" className="btn-back" aria-label="Volver">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        </Link>
+
+        {/* Botón favorito */}
+        <button className="btn-fav" aria-label="Favorito">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9-8.1C1 9 4 6 6.5 6S12 10 12 10s2.5-4 5.5-4 5.5 3 3.5 6.9C19 16.4 12 21 12 21z"/></svg>
+        </button>
+
+        <img src={film.movie_banner || film.image} alt={film.title} />
+      </div>
+
+      <div className="film-content">
+        <div className="film-original">{film.original_title}</div>
+        <h1 className="film-title">{film.title}</h1>
+        <div className="film-meta">{film.release_date} | {film.running_time}' | ★ {film.rt_score}</div>
+
+        <p className="film-desc">{film.description}</p>
+
+        <div className="meta-group"><strong>Characters:</strong> {related.people.join(', ') || '—'}</div>
+        <div className="meta-group"><strong>Director:</strong> {film.director}</div>
+        <div className="meta-group"><strong>Producer:</strong> {film.producer}</div>
+
+        <div className="poster-wrap">
+          <img src={film.image} alt={`${film.title} poster`} />
+        </div>
+      </div>
     </div>
   );
 }
 
 export default InfoFilm;
-

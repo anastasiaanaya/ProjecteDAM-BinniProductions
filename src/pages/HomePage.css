@@ -3,8 +3,6 @@
     background:#F2EDDA;
 }
 
-
-
 .films-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 columnes iguals */
