@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Menu from '../components/Menu';
 import Footer from '../components/Footer';
 import './HomePage.css';
+import Filters from '../components/filters';
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
 
@@ -76,12 +77,13 @@ function HomePage() {
 
   return (
     <div className="homePage-container">
-
-      <Header 
-        sortOption={sortOption}
-        setSortOption={setSortOption}
-        SORT_OPTIONS={SORT_OPTIONS}
-      />
+      <div className="filter">
+        <Filters
+          sortOption={sortOption}
+          setSortOption={setSortOption}
+          SORT_OPTIONS={SORT_OPTIONS}
+        />
+      </div>
 
       <div className="films-grid">
         {sortedFilms.map((film) => (
@@ -93,7 +95,7 @@ function HomePage() {
               title={film.title}
             >
               {/* <img src={film.image} alt={film.title} className="film-image" /> */}
-              <Link to="./pages/InfoFilm"><img src={film.image} alt={film.title} className="film-image" /></Link>
+              <Link to={`/film/${film.id}`}><img src={film.image} alt={film.title} className="film-image" /></Link>
             </Link>
           )
         ))}

@@ -8,13 +8,7 @@ function Header({ sortOption, setSortOption, SORT_OPTIONS }) {
       <div className="main-header">
         <h1>Pel·lícules Ghibli</h1>
       </div>
-      <div className="filter">
-        <Filters
-          sortOption={sortOption}
-          setSortOption={setSortOption}
-          SORT_OPTIONS={SORT_OPTIONS}
-        />
-      </div>
+
     </header>
   );
 }
