@@ -9,11 +9,13 @@ function App() {
   return (
 <div> 
   <Header />
-  <Menu />
+  
   <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/film/:id" element={<InfoFilm />} />
-    </Routes>
+  </Routes>
+
+  <Menu />
   <Footer />
     </div>
    
