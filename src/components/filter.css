@@ -1,0 +1,25 @@
+.filter-select {
+    width: 213px;
+    height: 48px;
+  padding: 10px;
+  padding-left: 20px;
+  border-radius: 31px;
+  border: none;
+  background-color: #D1cba9;
+  color: #1c1b1f;   
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+background-image: url("./flecha-filter.png");
+  background-repeat: no-repeat;
+  background-position: right 1.5rem center;
+  background-size: 1em;
+  padding-right: 2.5em;
+}
+
+.filter-select:focus {
+  border-color: #A3B18A;
+}
