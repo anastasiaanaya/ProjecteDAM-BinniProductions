@@ -99,8 +99,7 @@ function HomePage() {
         ))}
       </div>
 
-      <Menu />
-      <Footer />
+
     </div>
   );
 }
