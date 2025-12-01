@@ -1,15 +1,18 @@
 import './Menu.css';
-import totoroIconUrl from './totoro-icon.svg';
+import totoroIcon from './totoro-icon.svg';
+import starIcon from './star-icon.svg';
 
 function Menu() {
   return (
     <nav className="navigation-menu">
       <div className="navigation-pages">
         <div className="home-page selected-page">
-          <img src={totoroIconUrl} alt="Totoro" className="totoro-icon" />
+          <img src={totoroIcon} alt="Totoro Icon" className="totoro-icon" />
         </div>
-        
-        <div className="favourites-page"></div>
+
+        <div className="favourites-page">
+          <img src={starIcon} alt="Star Icon" className="star-icon" />
+        </div>
       </div>
 
       <div className="search-bar">
