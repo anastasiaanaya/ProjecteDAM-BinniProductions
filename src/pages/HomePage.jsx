@@ -87,17 +87,11 @@ function HomePage() {
 
       <div className="films-grid">
         {sortedFilms.map((film) => (
-          film && (
-            <Link
-              key={film.id}
-              href={`/film/${film.id}`}
-              className="film-card"
-              title={film.title}
-            >
-              {/* <img src={film.image} alt={film.title} className="film-image" /> */}
-              <Link to={`/film/${film.id}`}><img src={film.image} alt={film.title} className="film-image" /></Link>
-            </Link>
-          )
+          <article key={film.id} className="film-card">
+            <Link to={`/film/${film.id}`}><img src={film.image} alt={film.title} className="film-image" /></Link>
+
+          </article>
+         
         ))}
       </div>
 
