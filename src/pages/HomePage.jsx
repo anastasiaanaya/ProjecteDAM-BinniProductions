@@ -92,7 +92,8 @@ function HomePage() {
               className="film-card"
               title={film.title}
             >
-              <img src={film.image} alt={film.title} className="film-image" />
+              {/* <img src={film.image} alt={film.title} className="film-image" /> */}
+              <Link to="./pages/InfoFilm"><img src={film.image} alt={film.title} className="film-image" /></Link>
             </Link>
           )
         ))}
