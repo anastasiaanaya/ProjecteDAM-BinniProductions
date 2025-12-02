@@ -4,6 +4,7 @@ import InfoFilm from './pages/InfoFilm';
 import Header from './components/Header';
 import Menu from './components/Menu';
 import Footer from './components/Footer';
+import Favourites from './pages/Favourites';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
   <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/film/:id" element={<InfoFilm />} />
+      <Route path="/favorits" element={<Favourites />} />
   </Routes>
 
   <Menu />
