@@ -1,6 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './InfoFilm.css';
+import backImg from '../components/back_arrow.png';
+import heartImg from '../components/heart.png';
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
 
