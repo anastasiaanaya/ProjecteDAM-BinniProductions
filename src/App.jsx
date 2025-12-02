@@ -1,18 +1,26 @@
-import './App.css';
-import Header from './components/Header';
+import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import InfoFilm from './pages/InfoFilm';
+import Header from './components/Header';
+import Menu from './components/Menu';
 import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="App">
-     
-      <main className="content">
-        <HomePage />
-      </main>
-     
+<div> 
+  <Header />
+  
+  <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/film/:id" element={<InfoFilm />} />
+  </Routes>
+
+  <Menu />
+  <Footer />
     </div>
-  )
+   
+
+  );
 }
 
-export default App
+export default App;
