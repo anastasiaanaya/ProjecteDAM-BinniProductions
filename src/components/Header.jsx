@@ -1,6 +1,5 @@
 import './Header.css';
-import filterIcon from './filter-icon.png';
-import Filters from '../components/filters';
+
 
 function Header({ sortOption, setSortOption, SORT_OPTIONS }) {
   return (
