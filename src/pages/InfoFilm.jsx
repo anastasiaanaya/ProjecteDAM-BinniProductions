@@ -71,7 +71,6 @@ function InfoFilm() {
           style={{backgroundColor: isFavorite(film.id) ? 'gold':'grey'}}
           >
             {isFavorite(film.id) ? 'goodbye' : 'hola'}
-          
         </button>
 
         <img src={film.movie_banner || film.image} alt={film.title} />
