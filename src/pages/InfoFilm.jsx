@@ -14,27 +14,11 @@ function InfoFilm() {
   useEffect(() => {
     const fetchFilm = async () => {
       try {
-        const res = await fetch(`${API_BASE}/${id}`);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-        setFilm(data);
-
-        const resolveUrls = async (urls = []) => {
-          if (!urls.length) return [];
-          const results = await Promise.all(
-            urls.map(u => fetch(u).then(r => (r.ok ? r.json().catch(() => null) : null)).catch(() => null))
-          );
-          return results.map(r => (r && (r.name || r.title) ? r.name || r.title : r?.url || 'sin nombre'));
-        };
-
-        const [people, species, locations, vehicles] = await Promise.all([
-          resolveUrls(data.people),
-          resolveUrls(data.species),
-          resolveUrls(data.locations),
-          resolveUrls(data.vehicles),
-        ]);
-
-        setRelated({ people, species, locations, vehicles });
+        const response = await fetch(API_URL);
+        if (!response.ok)
+          throw new Error(`Error HTTP: ${response.status}`);
+        const data = await response.json();
+        setFilms(data);
       } catch (err) {
         setError(err.message);
       } finally {
