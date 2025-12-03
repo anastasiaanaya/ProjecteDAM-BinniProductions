@@ -1,8 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './InfoFilm.css';
-
-const API_BASE = 'https://ghibliapi.vercel.app/films';
+import { useFavorites } from '../context/FavoritesContext';
+const API_URL = 'https://ghibliapi.vercel.app/films';
 
 function InfoFilm() {
   const { id } = useParams();
@@ -14,25 +14,34 @@ function InfoFilm() {
   useEffect(() => {
     const fetchFilm = async () => {
       try {
-        const res = await fetch(`${API_BASE}/${id}`);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const res = await fetch(`${API_URL}/${id}`);
+        if
+        (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         setFilm(data);
-
         const resolveUrls = async (urls = []) => {
-          if (!urls.length) return [];
-          const results = await Promise.all(
-            urls.map(u => fetch(u).then(r => (r.ok ? r.json().catch(() => null) : null)).catch(() => null))
-          );
-          return results.map(r => (r && (r.name || r.title) ? r.name || r.title : r?.url || 'sin nombre'));
+          if (!urls || urls.length === 0) return [];
+          const out = [];
+          for (const u of urls) {
+            try {
+              const r = await fetch(u);
+              if (!r.ok) {
+                out.push(u);
+                continue;
+              }
+              const j = await r.json();
+              out.push(j.name || j.title || j.url || 'sin nombre');
+            } catch {
+              out.push(u);
+            }
+          }
+          return out;
         };
 
-        const [people, species, locations, vehicles] = await Promise.all([
-          resolveUrls(data.people),
-          resolveUrls(data.species),
-          resolveUrls(data.locations),
-          resolveUrls(data.vehicles),
-        ]);
+        const people = await resolveUrls(data.people);
+        const species = await resolveUrls(data.species);
+        const locations = await resolveUrls(data.locations);
+        const vehicles = await resolveUrls(data.vehicles);
 
         setRelated({ people, species, locations, vehicles });
       } catch (err) {
@@ -45,22 +54,24 @@ function InfoFilm() {
     fetchFilm();
   }, [id]);
 
-  if (loading) return <p>Cargando...</p>;
-  if (error) return <div className="error">Error: {error}</div>;
-  if (!film) return <div>No se encontró la película</div>;
+    const { toggleFavorite, isFavorite } = useFavorites();
+
+  if (loading) return <p>Carregant pel·lícules...</p>;
+  if (error) return <div className="error-message">Error: {error}</div>;
+  if (!film) return <div>No s'ha trobat la pel·lícula'</div>;
 
   return (
     <div className="film-detail">
-
       <div className="film-banner-wrap">
-        {/* Botón volver */}
         <Link to="/" className="btn-back" aria-label="Volver">
           <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </Link>
 
-        {/* Botón favorito */}
-        <button className="btn-fav" aria-label="Favorito">
-          <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9-8.1C1 9 4 6 6.5 6S12 10 12 10s2.5-4 5.5-4 5.5 3 3.5 6.9C19 16.4 12 21 12 21z"/></svg>
+        <button className="btn-fav" onClick={()=> toggleFavorite(film)}
+          style={{backgroundColor: isFavorite(film.id) ? 'gold':'grey'}}
+          >
+            {isFavorite(film.id) ? 'goodbye' : 'hola'}
+          
         </button>
 
         <img src={film.movie_banner || film.image} alt={film.title} />
