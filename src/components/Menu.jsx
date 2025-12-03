@@ -18,7 +18,7 @@ function Menu() {
           <div className={`sliding-marker${(path === '/' || path.startsWith('/film')) ? ' home' : (path.startsWith('/favourites') ? ' favourites' : ' home')}`} />
         )}
         {searchExpanded ? (
-          path === '/' ? (
+          (path === '/' || path.startsWith('/film')) ? (
             <div className="home-page contracted-page">
               <img src={totoroIcon} alt="Totoro Icon" className="totoro-icon" />
             </div>
