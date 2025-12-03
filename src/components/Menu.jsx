@@ -1,7 +1,7 @@
 import './Menu.css';
 import { Link, useLocation } from 'react-router-dom';
 import totoroIcon from './totoro-icon.svg';
-import starIcon from './star-icon.svg';
+import heartIcon from './heart-icon.svg';
 
 function Menu() {
   const location = useLocation();
@@ -14,7 +14,7 @@ function Menu() {
         </div>
 
         <div className={`favourites-page ${path === '/favourites' ? 'selected-page' : ''}`}>
-          <Link to="/favourites"><img src={starIcon} alt="Star Icon" className="star-icon" /></Link>
+          <Link to="/favourites"><img src={heartIcon} alt="Heart Icon" className="heart-icon" /></Link>
         </div>
       </div>
 
