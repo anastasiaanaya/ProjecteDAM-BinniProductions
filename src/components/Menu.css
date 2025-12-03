@@ -1,10 +1,16 @@
 .navigation-menu {
     display: flex;
     align-items: center;
-    position:sticky;
+    position: sticky;
     margin-left: 28px;
     margin-right: 28px;
     bottom: 28px;
+    /* CORRECCIÓ: Assegurem que l'amplada total (incloent marges) no superi el 100% */
+    width: calc(100% - 56px);
+    box-sizing: border-box;
+    /* Opcional: màxim per pantalles molt grans */
+    max-width: 1200px;
+    margin: 0 auto 28px auto; /* Centrat si hi ha max-width, bottom 28px */
 }
 
 .navigation-pages {
@@ -15,6 +21,8 @@
     display: flex;
     align-items: center;
     position: relative;
+    /* Evita que s'aixafi quan el buscador creix */
+    flex-shrink: 0; 
 }
 
 .navigation-pages.contracted {
@@ -75,6 +83,8 @@
     justify-content: center;
     transition: width 0.3s ease;
     position: relative;
+    /* CORRECCIÓ: Important per retallar el contingut mentre s'anima */
+    overflow: hidden; 
 }
 
 .search-bar.expanded {
@@ -90,31 +100,34 @@
     line-height: 48px;
     text-align: center;
     cursor: pointer;
+    /* Assegura que la icona no es mogui estranyament */
+    min-width: 48px; 
 }
 
 .search-bar.expanded .search-icon {
     color: #5C694D;
 }
 
-
 .search-input {
-    width: 260px;
+    /* CORRECCIÓ: En lloc d'amplada fixa, fem que ompli l'espai restant */
+    width: 100%; 
     height: 32px;
     border-radius: 16px;
     border: none;
-    padding: 0 12px;
+    padding: 0 12px 0 0; /* Padding ajustat */
     font-size: 16px;
     outline: none;
     margin-top: 8px;
     background: transparent;
     color: #5C694D;
+    white-space: nowrap;
 }
 
 .totoro-icon {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Centrat */
+  transform: translate(-50%, -50%);
   width: 24px;
 }
 
@@ -140,9 +153,11 @@
   transition: left 0.3s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1);
   transform: translateY(-50%);
 }
+
 .sliding-marker.favourites {
   left: 50%;
 }
+
 .sliding-marker.home {
   left: 0;
 }
