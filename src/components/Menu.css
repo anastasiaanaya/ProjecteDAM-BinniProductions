@@ -1,7 +1,7 @@
 .navigation-menu {
     display: flex;
     align-items: center;
-    position: sticky;
+    position: fixed;
     margin-left: 28px;
     margin-right: 28px;
     bottom: 28px;
