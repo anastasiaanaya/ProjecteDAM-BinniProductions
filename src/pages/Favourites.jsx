@@ -34,7 +34,7 @@ function FavoritesPage(){
 
             {/* Botó per eliminar des d'aquí mateix */}
             <button 
-              onClick={() => toggleFavorite(post)}
+              onClick={() => toggleFavorite(film)}
               style={{ 
                 marginTop: '10px', 
                 padding: '5px 10px', 
