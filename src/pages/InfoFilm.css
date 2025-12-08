@@ -26,13 +26,12 @@
   top: 18px;
   width: 46px;
   height: 46px;
-  border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(242,237,218,0.98);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-  border: 1px solid rgba(0,0,0,0.06);
+  background: none;
+  box-shadow: none;
+  border: none;
   cursor: pointer;
 }
 .btn-back { left: 16px; }
