@@ -1,7 +1,7 @@
 .navigation-menu {
     display: flex;
     align-items: center;
-    position: sticky;
+    position: fixed;
     margin-left: 28px;
     margin-right: 28px;
     bottom: 28px;
@@ -17,7 +17,8 @@
     display: flex;
     align-items: center;
     position: relative;
-    flex-shrink: 0; 
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .navigation-pages.contracted {
@@ -78,7 +79,8 @@
     justify-content: center;
     transition: width 0.3s ease;
     position: relative;
-    overflow: hidden; 
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .search-bar.expanded {
@@ -136,7 +138,7 @@
   top: 50%;
   left: 0;
   width: 50%;
-  height: 44px;
+  height: 48px;
   background-color: #D1CBA9;
   border-radius: 46px;
   border: 2px solid #5C694D;
@@ -144,6 +146,7 @@
   pointer-events: none;
   transition: left 0.3s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1);
   transform: translateY(-50%);
+  box-sizing: border-box;
 }
 
 .sliding-marker.favourites {
