@@ -59,3 +59,32 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 }
+/* ----------------------------------- */
+/*    AÑADIDO: Botón de favoritos ❤️    */
+/* ----------------------------------- */
+
+/* Necesario para que el botón se posicione en la tarjeta */
+.film-card {
+    position: relative;
+}
+
+/* Botón flotante */
+.fav-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px; /* ⬅⬅ Cambiado: estaba bottom: 10px */
+    background: rgba(255,255,255,0.9);
+    border: 1px solid #ddd;
+    border-radius: 18px;
+    padding: 6px 8px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+/* Si la película ya es favorita */
+.fav-btn.is-fav {
+    background: #ffe6e6;
+    border-color: #ff9b9b;
+    color: #b22;
+}

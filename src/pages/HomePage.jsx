@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './HomePage.css';
 import Filters from '../components/filters';
+import { useFavorites } from '../context/FavoritesContext';
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
 
+// (mantén SORT_OPTIONS y sortFilms igual que en tu versión)
 
-
-// --- OPCIONES DEL FILTRE ---
 const SORT_OPTIONS = {
   DATA_ASC: "dataAsc",
   DATA_DESC: "dataDesc",
@@ -17,7 +17,6 @@ const SORT_OPTIONS = {
   VALORACIO_DESC: "valoracioDesc",
 };
 
-// --- FUNCIÓ PER ORDENAR ---
 const sortFilms = (films, option) => {
   return [...films].sort((a, b) => {
     switch (option) {
@@ -43,18 +42,20 @@ const sortFilms = (films, option) => {
 };
 
 function HomePage() {
-
   const [films, setFilms] = useState([]);
-  const [sortOption, setSortOption] = useState(""); // Mostrar 'Filtres' por defecto
+  const [sortOption, setSortOption] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Favorites context
+  const { favorites, toggleFavorite } = useFavorites();
+  const isFavorite = (id) => favorites.some(f => f.id === id);
 
   useEffect(() => {
     const fetchFilms = async () => {
       try {
         const response = await fetch(API_URL);
-        if (!response.ok)
-          throw new Error(`Error HTTP: ${response.status}`);
+        if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
         const data = await response.json();
         setFilms(data);
       } catch (err) {
@@ -69,7 +70,6 @@ function HomePage() {
   if (loading) return <p>Carregant pel·lícules...</p>;
   if (error) return <div className="error-message">Error: {error}</div>;
 
-  // --- APLICAR FILTRE ---
   const sortedFilms = sortFilms(films, sortOption);
 
   return (
@@ -85,14 +85,22 @@ function HomePage() {
       <div className="films-grid">
         {sortedFilms.map((film) => (
           <article key={film.id} className="film-card">
-            <Link to={`/film/${film.id}`}><img src={film.image} alt={film.title} className="film-image" /></Link>
+            <Link to={`/film/${film.id}`}>
+              <img src={film.image} alt={film.title} className="film-image" />
+            </Link>
 
+            {/* Botón favorito flotante */}
+            <button
+              className={`fav-btn ${isFavorite(film.id) ? 'is-fav' : ''}`}
+              onClick={() => toggleFavorite(film)}
+              aria-label={isFavorite(film.id) ? 'Eliminar favorito' : 'Afegir a favorits'}
+              title={isFavorite(film.id) ? 'Eliminar favorito' : 'Afegir a favorits'}
+            >
+              {isFavorite(film.id) ? '♥' : '♡'}
+            </button>
           </article>
-         
         ))}
       </div>
-
-
     </div>
   );
 }
