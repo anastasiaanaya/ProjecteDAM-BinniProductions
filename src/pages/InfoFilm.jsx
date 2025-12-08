@@ -2,6 +2,9 @@ import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './InfoFilm.css';
 import { useFavorites } from '../context/FavoritesContext';
+import heartRed from './heartRed.svg';
+import heartWhite from './heartWhite.svg';
+import back from './back.svg';
 const API_URL = 'https://ghibliapi.vercel.app/films';
 
 function InfoFilm() {
@@ -64,13 +67,13 @@ function InfoFilm() {
     <div className="film-detail">
       <div className="film-banner-wrap">
         <Link to="/" className="btn-back" aria-label="Volver">
-          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <img src={back} alt="Volver" className="back-icon" />
         </Link>
 
-        <button className="btn-fav" onClick={()=> toggleFavorite(film)}
-          style={{backgroundColor: isFavorite(film.id) ? 'gold':'grey'}}
-          >
-            {isFavorite(film.id) ? 'goodbye' : 'hola'}
+        <button className="btn-fav" onClick={()=> toggleFavorite(film)}>
+             <img src={isFavorite(film.id) ? heartRed : heartWhite} alt="corazón"
+    className="heart-icon"
+  />
         </button>
 
         <img src={film.movie_banner || film.image} alt={film.title} />
