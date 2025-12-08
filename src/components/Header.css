@@ -17,9 +17,14 @@
 }
 
 h1{
-
-  font-size: 16px;
-  line-height: 80%;
+  font-family: "Kantumruy Pro", sans-serif;
+  font-weight: 300;
+  font-size: 25px;
+  line-height: 92%;
+  margin: 0px;
+  margin-top: 6px;
+  margin-left: 2px;
+  letter-spacing: 0.05em;
 }
 
 .filter {
@@ -37,7 +42,7 @@ h1{
 /*logo */
 
 .img-ghibli{
-width: 148px;
+width: 29px;
 height: 52px;
 }
 
