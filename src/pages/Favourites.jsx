@@ -1,51 +1,57 @@
 import React from 'react';
 import { useFavorites } from '../context/FavoritesContext';
 import { Link } from 'react-router-dom';
-import '../pages/HomePage';
+import './Favourites.css';
 
-function FavoritesPage(){
-      // 1. Ens connectem al Context per llegir la llista
+function FavoritesPage() {
   const { favorites, toggleFavorite } = useFavorites();
 
-  
-  // 2. Cas buit: Si no hi ha res, avisem l'usuari
-  if (favorites.length === 0) {
+  if (!favorites || favorites.length === 0) {
     return (
-      <div style={{ textAlign: 'center', marginTop: '50px' }}>
+      <div className="empty-fav">
         <h2>No tens favorits encara 😢</h2>
         <p>Ves a la llista i guarda'n algun!</p>
-        <Link to="/" className="btn-back">← Tornar a l'inici</Link>
+       
       </div>
     );
   }
 
-  // 3. Cas amb dades: Pintem la llista
   return (
-    <div className="post-list-container">
-      <h2>Els meus Favorits ❤️ ({favorites.length})</h2>
-      
-      <div className="films-grid">
+    <div className="favorites-container">
+      <h2 className="favorites-heading">Favorits <span className="count">({favorites.length})</span></h2>
+
+      <div className="favorites-grid">
         {favorites.map((film) => (
           <article key={film.id} className="film-card">
-            {/* Títol que et porta al detall */}
-            <Link to={`/film/${film.id}`} style={{textDecoration: 'none', color: 'inherit'}}>
-              <h3>{film.title}</h3>
+            <Link to={`/film/${film.id}`} className="poster-link">
+              <img src={film.image} alt={film.title} className="film-poster" />
             </Link>
 
-            {/* Botó per eliminar des d'aquí mateix */}
-            <button 
-              onClick={() => toggleFavorite(film)}
-              style={{ 
-                marginTop: '10px', 
-                padding: '5px 10px', 
-                backgroundColor: '#ffdddd', 
-                border: '1px solid red', 
-                borderRadius: '5px',
-                cursor: 'pointer'
-              }}
-            >
-              🗑️ Treure
-            </button>
+            <div className="film-info">
+              <div className="film-original">{film.original_title}</div>
+
+
+              <Link to={`/film/${film.id}`} className="film-title">
+                {film.title}
+              </Link>
+
+              <div className="film-meta">
+                {film.release_date} | {film.running_time}' | ★ {film.rt_score}
+              </div>
+
+              <div className="film-actions">
+                <button
+                  className="pill-toggle"
+                  onClick={() => toggleFavorite(film)}
+                  aria-label="Treure dels favorits"
+                  title="Treure dels favorits"
+                >
+                  🗑️ Treure
+                </button>
+
+                
+              </div>
+            </div>
           </article>
         ))}
       </div>
@@ -54,4 +60,3 @@ function FavoritesPage(){
 }
 
 export default FavoritesPage;
-
