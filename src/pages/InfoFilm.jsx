@@ -78,7 +78,7 @@ function InfoFilm() {
 
       <div className="film-content">
         <div className="film-original">{film.original_title}</div>
-        <h1 className="film-title">{film.title}</h1>
+        <h2 className="film-title">{film.title}</h2>
         <div className="film-meta">{film.release_date} | {film.running_time}' | ★ {film.rt_score}</div>
 
         <p className="film-desc">{film.description}</p>
