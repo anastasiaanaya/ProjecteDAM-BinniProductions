@@ -1,12 +1,21 @@
 import './Header.css';
-
+import logoGhibli from '../../public/logo-ghibli2.svg';
 
 function Header({ sortOption, setSortOption, SORT_OPTIONS }) {
   return (
-    <header className="header">
-      <div className="main-header">
-        <h1>Pel·lícules Ghibli</h1>
-      </div>
+    <header className="header">    
+      <section className="main-header">
+
+        <div className="logo-ghibli">
+          <img src={logoGhibli} alt="Logo Ghibli" className="img-ghibli"/>
+
+        </div>
+        <div className="titol-ghibli">
+
+        </div>
+        
+        
+      </section>
 
     </header>
   );
