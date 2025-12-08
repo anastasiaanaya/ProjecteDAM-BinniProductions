@@ -17,7 +17,8 @@
     display: flex;
     align-items: center;
     position: relative;
-    flex-shrink: 0; 
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .navigation-pages.contracted {
@@ -78,7 +79,8 @@
     justify-content: center;
     transition: width 0.3s ease;
     position: relative;
-    overflow: hidden; 
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .search-bar.expanded {

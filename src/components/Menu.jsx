@@ -54,7 +54,7 @@ function Menu() {
             placeholder="Cerca per títol, director..."
             value={searchValue}
             onChange={e => setSearchValue(e.target.value)}
-            autoFocus // Quan s'obra la lupa ja està seleccionat el camp de text per escriure
+            autoFocus // Quan s'obra la lupa ja està seleccionat el camp de text per escriure (línia intermitent)
             onBlur={() => setSearchExpanded(false)} // Quan l'usuari clica a fora del buscador es tanca
           />
         )}
