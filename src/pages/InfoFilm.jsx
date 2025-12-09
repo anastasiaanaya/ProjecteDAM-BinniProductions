@@ -67,7 +67,7 @@ function InfoFilm() {
   return (
     <div className="film-detail">
       <div className="film-banner-wrap">
-        <Link to="/" className="btn-back" aria-label="Volver">
+        <Link to="/" className="back" aria-label="Volver">
            <img src={back} alt="Volver" className="back-icon" />
         </Link>
 

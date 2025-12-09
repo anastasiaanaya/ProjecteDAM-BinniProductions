@@ -20,7 +20,7 @@
   -webkit-user-drag: none;
 }
 
-.btn-back,
+.back,
 .btn-fav {
   position: absolute;
   top: 18px;
@@ -34,7 +34,7 @@
   border: none;
   cursor: pointer;
 }
-.btn-back { left: 16px; }
+.back { left: 16px; }
 .btn-fav  { right: 16px; }
 
 .film-content {
