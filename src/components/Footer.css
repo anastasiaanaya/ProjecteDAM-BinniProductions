@@ -1,9 +1,9 @@
 .main-footer {
   width: 100%;
   padding: 1rem 2rem;
-  background-color: #5C694D;
-  color: #FFFAF4;
+  padding-bottom: 80px;
+  background-color: #D1CBA9;
+  color: #000000;
   box-sizing: border-box;
   text-align: center;
-  margin-top: 2rem;
 }

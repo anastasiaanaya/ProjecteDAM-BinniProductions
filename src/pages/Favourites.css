@@ -1,0 +1,112 @@
+/* Favorites.css */
+
+.favorites-container {
+  background: #f3eee0;
+  padding: 20px;
+  border-radius: 6px;
+  max-width: 700px;
+  margin: 20px auto;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.favorites-heading {
+  /*font-family: 'Oswald', sans-serif;*/
+  font-size: 28px;
+  color: #6b442a;
+  margin-bottom: 18px;
+}
+
+.favorites-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.film-card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: #efe9d9;
+  padding: 12px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.film-poster {
+  width: 96px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.film-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.original-label {
+  font-size: 12px;
+  color: #7b6b5e;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.film-title {
+  font-weight: 700;
+  color: #1f1f1f;
+  text-decoration: none;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.film-meta {
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.film-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pill-toggle {
+  background: #dfe1c4;
+  border: 1px solid #b9bda2;
+  padding: 6px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.search-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #40523a;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.empty-fav {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.btn-back {
+  display: inline-block;
+  margin-top: 12px;
+  text-decoration: none;
+  color: #2b2b2b;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 6px;
+}

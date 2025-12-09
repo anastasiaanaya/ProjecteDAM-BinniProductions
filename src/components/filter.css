@@ -13,11 +13,12 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-background-image: url("./flecha-filter.png");
+background-image: url("../../public/flecha-filters.svg");
   background-repeat: no-repeat;
   background-position: right 1.5rem center;
   background-size: 1em;
   padding-right: 2.5em;
+  font-family: "Kantumruy Pro", sans-serif;
 }
 
 .filter-select:focus {
