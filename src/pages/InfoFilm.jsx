@@ -11,7 +11,7 @@ const API_URL = 'https://ghibliapi.vercel.app/films';
 function InfoFilm() {
   const { id } = useParams();
   const [film, setFilm] = useState(null);
-  const [related, setRelated] = useState({ people: [], species: [], locations: [], vehicles: [] });
+  const [related, setRelated] = useState({ people: []});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -43,11 +43,8 @@ function InfoFilm() {
         };
 
         const people = await resolveUrls(data.people);
-        const species = await resolveUrls(data.species);
-        const locations = await resolveUrls(data.locations);
-        const vehicles = await resolveUrls(data.vehicles);
 
-        setRelated({ people, species, locations, vehicles });
+        setRelated({ people});
       } catch (err) {
         setError(err.message);
       } finally {
