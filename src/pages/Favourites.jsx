@@ -9,8 +9,8 @@ function FavoritesPage() {
   if (!favorites || favorites.length === 0) {
     return (
       <div className="empty-fav">
-        <h2>No tens favorits encara 😢</h2>
-        <p>Ves a la llista i guarda'n algun!</p>
+        <h2>You haven't saved any favorites</h2>
+        <p>Go save some in the Home Page!</p>
        
       </div>
     );
