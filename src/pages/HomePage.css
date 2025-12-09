@@ -23,11 +23,11 @@
   z-index: 0; /* asegurar que la tarjeta no quede por encima del header */
 }
 
-/* efecto al pasar por encima */
+/* efecto al pasar por encima 
 .film-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.10);
-}
+}*/
 
 .fil-image-wrapper {
   width: 100%;
@@ -48,10 +48,10 @@
   will-change: transform;
 }
 
-/* pequeño zoom al hover */
+/* pequeño zoom al hover 
 .film-card:hover .film-image {
   transform: scale(1.03);
-}
+}*/
 
 
 .film-card::after {
@@ -83,11 +83,11 @@
   transition: transform 0.15s ease, background-color 0.15s ease;
 }
 
-/* hover efecto tactile */
+/* hover efecto tactile 
 .fav-btn:hover {
   transform: translateY(-2px);
   background: rgba(255,255,255,1);
-}
+}*/
 
 /* estado favorita */
 .fav-btn.is-fav {
