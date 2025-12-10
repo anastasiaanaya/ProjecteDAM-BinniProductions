@@ -4,7 +4,7 @@ import './InfoFilm.css';
 import { useFavorites } from '../context/FavoritesContext';
 import ButtonFav from '../components/button-fav';
 
-import back from './back.svg';
+import back from '../../public/back.svg';
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
 

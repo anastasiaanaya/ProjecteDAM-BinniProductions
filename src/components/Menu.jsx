@@ -1,7 +1,7 @@
 import './Menu.css';
 import { Link, useLocation } from 'react-router-dom';
-import totoroIcon from './totoro-icon.svg';
-import heartIcon from './heart-icon.svg';
+import totoroIcon from '../../public/totoro-icon.svg';
+import heartIcon from '../../public/heart-icon.svg';
 import { useState } from 'react';
 import { useSearch } from '../context/SearchContext';
 
