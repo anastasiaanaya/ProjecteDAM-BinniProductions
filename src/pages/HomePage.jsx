@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './HomePage.css';
 import Filters from '../components/filters';
 import { useFavorites } from '../context/FavoritesContext';
+import { useSearch } from '../context/SearchContext';
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
 
@@ -51,6 +52,9 @@ function HomePage() {
   const { favorites, toggleFavorite } = useFavorites();
   const isFavorite = (id) => favorites.some(f => f.id === id);
 
+  // Search context
+  const { searchQuery } = useSearch();
+
   useEffect(() => {
     const fetchFilms = async () => {
       try {
@@ -70,7 +74,21 @@ function HomePage() {
   if (loading) return <p>Carregant pel·lícules...</p>;
   if (error) return <div className="error-message">Error: {error}</div>;
 
-  const sortedFilms = sortFilms(films, sortOption);
+  const normalizedQuery = (searchQuery || '').trim().toLowerCase();
+
+  const filteredFilms = normalizedQuery
+    ? films.filter(f => {
+        // Buscamos en título, director, productor y año
+        return (
+          (f.title || '').toLowerCase().includes(normalizedQuery) ||
+          (f.director || '').toLowerCase().includes(normalizedQuery) ||
+          (f.producer || '').toLowerCase().includes(normalizedQuery) ||
+          (f.release_date || '').toLowerCase().includes(normalizedQuery)
+        );
+      })
+    : films;
+
+  const sortedFilms = sortFilms(filteredFilms, sortOption);
 
   return (
     <div className="homePage-container">

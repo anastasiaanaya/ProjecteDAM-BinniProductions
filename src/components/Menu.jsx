@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import totoroIcon from './totoro-icon.svg';
 import heartIcon from './heart-icon.svg';
 import { useState } from 'react';
+import { useSearch } from '../context/SearchContext';
 
 function Menu() {
   // Hook per saber a quina pàgina es troba l'usuari
@@ -10,7 +11,7 @@ function Menu() {
   const path = location.pathname;
 
   const [searchExpanded, setSearchExpanded] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+  const { searchQuery, setSearchQuery } = useSearch();
 
   return (
     <nav className="navigation-menu">
@@ -45,15 +46,23 @@ function Menu() {
       </div>
 
       <div className={`search-bar${searchExpanded ? ' expanded' : ''}`}> 
-        <span className="material-symbols-rounded search-icon" onClick={() => setSearchExpanded(true)}>search</span>
+        <span
+          className="material-symbols-rounded search-icon"
+          onClick={() => {
+            setSearchExpanded(true);
+            // al obrir el buscador mantenim la query anterior
+          }}
+        >
+          search
+        </span>
         
         {searchExpanded && (
           <input
             type="text"
             className="search-input"
             placeholder="Cerca per títol, director..."
-            value={searchValue}
-            onChange={e => setSearchValue(e.target.value)}
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
             autoFocus // Quan s'obra la lupa ja està seleccionat el camp de text per escriure (línia intermitent)
             onBlur={() => setSearchExpanded(false)} // Quan l'usuari clica a fora del buscador es tanca
           />
