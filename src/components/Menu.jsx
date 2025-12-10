@@ -1,6 +1,5 @@
 import './Menu.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import totoroIcon from '../../public/totoro-icon.svg';
 import heartIcon from '../../public/heart-icon.svg';
 import { useState, useEffect } from 'react';
 
@@ -54,7 +53,7 @@ function Menu() {
         {searchExpanded ? (
           (path === '/' || path.startsWith('/film')) ? (
             <div className="home-page contracted-page">
-              <img src={totoroIcon} alt="Totoro Icon" className="totoro-icon" />
+              <img src="/totoro-icon.svg" alt="Totoro Icon" className="totoro-icon" />
             </div>
           ) : (
             <div className="favourites-page contracted-page">
@@ -64,7 +63,7 @@ function Menu() {
         ) : (
           <>
             <div className={`home-page`}>
-              <Link to="/"><img src={totoroIcon} alt="Totoro Icon" className="totoro-icon" /></Link>
+              <Link to="/"><img src="/totoro-icon.svg" alt="Totoro Icon" className="totoro-icon" /></Link>
             </div>
             <div className={`favourites-page`}>
               <Link to="/favourites"><img src={heartIcon} alt="Heart Icon" className="heart-icon" /></Link>
