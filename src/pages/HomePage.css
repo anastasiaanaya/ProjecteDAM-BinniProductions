@@ -62,39 +62,6 @@
   background: linear-gradient(to top, rgba(0,0,0,0.03), transparent 30%);
 }
 
-/* Botón de favoritos */
-.fav-btn {
-  position: absolute;
-  right: 12px;
-  top: 12px;
-  z-index: 0; 
-  background: rgba(255,255,255,0.95);
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  padding: 6px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 30px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-  transition: transform 0.15s ease, background-color 0.15s ease;
-}
-
-/* hover efecto tactile 
-.fav-btn:hover {
-  transform: translateY(-2px);
-  background: rgba(255,255,255,1);
-}*/
-
-/* estado favorita */
-.fav-btn.is-fav {
-  background: #fff0f0;
-  border-color: #ff9b9b;
-  color: #b22;
-}
 
 .error-message {
   color: #D8000C;
