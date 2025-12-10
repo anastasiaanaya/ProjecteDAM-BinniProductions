@@ -4,7 +4,9 @@
   top: 12px;
   z-index: 0; 
   background:none;
+  display: block;
   border: none;
+  margin-left: 10px;
   width: 40px;
   height: 40px;
   padding: 6px;
