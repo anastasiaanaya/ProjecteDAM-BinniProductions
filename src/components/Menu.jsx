@@ -86,7 +86,7 @@ function Menu() {
           <input
             type="text"
             className="search-input"
-            placeholder="Cerca per títol, director..."
+            placeholder="Search for title, director..."
             value={searchQuery}
             onChange={handleSearchChange}
             autoFocus // Quan s'obra la lupa ja està seleccionat el camp de text per escriure (línia intermitent)
