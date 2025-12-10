@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './HomePage.css';
 import Filters from '../components/filters';
-import { useSearch } from '../context/SearchContext';
 import ButtonFav from '../components/button-fav';
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
@@ -48,10 +47,9 @@ function HomePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
-
-  // Search context
-  const { searchQuery } = useSearch();
+  // Read search query from URL query param 'q' so searches are not persisted in context
+  const location = useLocation();
+  const searchQuery = new URLSearchParams(location.search).get('q') || '';
 
   useEffect(() => {
     const fetchFilms = async () => {

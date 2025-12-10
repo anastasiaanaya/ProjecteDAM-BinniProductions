@@ -1,17 +1,45 @@
 import './Menu.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import totoroIcon from '../../public/totoro-icon.svg';
 import heartIcon from '../../public/heart-icon.svg';
-import { useState } from 'react';
-import { useSearch } from '../context/SearchContext';
+import { useState, useEffect } from 'react';
 
 function Menu() {
   // Hook per saber a quina pàgina es troba l'usuari
   const location = useLocation();
+  const navigate = useNavigate();
   const path = location.pathname;
 
   const [searchExpanded, setSearchExpanded] = useState(false);
-  const { searchQuery, setSearchQuery } = useSearch();
+  // Search state is now local and synced with the URL query param 'q'.
+  const paramsInit = new URLSearchParams(location.search);
+  const [searchQuery, setSearchQuery] = useState(paramsInit.get('q') || '');
+
+  // Keep local state in sync if the URL changes (back/forward navigation)
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    setSearchQuery(params.get('q') || '');
+  }, [location.search]);
+
+  // When navigating away to a film or favourites page, clear the local search
+  // and remove the query param from the URL so searches are not persisted.
+  useEffect(() => {
+    if (location.pathname.startsWith('/film') || location.pathname.startsWith('/favourites')) {
+      if (searchQuery) setSearchQuery('');
+      if (location.search) navigate(location.pathname, { replace: true });
+      setSearchExpanded(false);
+    }
+  }, [location.pathname]);
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+    if (value.trim()) {
+      navigate(`/?q=${encodeURIComponent(value)}`, { replace: true });
+    } else {
+      navigate('/', { replace: true });
+    }
+  };
 
   return (
     <nav className="navigation-menu">
@@ -62,7 +90,7 @@ function Menu() {
             className="search-input"
             placeholder="Cerca per títol, director..."
             value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
+            onChange={handleSearchChange}
             autoFocus // Quan s'obra la lupa ja està seleccionat el camp de text per escriure (línia intermitent)
             onBlur={() => setSearchExpanded(false)} // Quan l'usuari clica a fora del buscador es tanca
           />
