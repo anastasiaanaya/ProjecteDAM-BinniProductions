@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './HomePage.css';
 import Filters from '../components/filters';
-import { useFavorites } from '../context/FavoritesContext';
 import { useSearch } from '../context/SearchContext';
+import ButtonFav from '../components/button-fav';
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
 
@@ -48,9 +48,7 @@ function HomePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Favorites context
-  const { favorites, toggleFavorite } = useFavorites();
-  const isFavorite = (id) => favorites.some(f => f.id === id);
+
 
   // Search context
   const { searchQuery } = useSearch();
@@ -106,16 +104,8 @@ function HomePage() {
             <Link to={`/film/${film.id}`}>
               <img src={film.image} alt={film.title} className="film-image" />
             </Link>
-
             {/* Botón favorito flotante */}
-            <button
-              className={`fav-btn ${isFavorite(film.id) ? 'is-fav' : ''}`}
-              onClick={() => toggleFavorite(film)}
-              aria-label={isFavorite(film.id) ? 'Eliminar favorito' : 'Afegir a favorits'}
-              title={isFavorite(film.id) ? 'Eliminar favorito' : 'Afegir a favorits'}
-            >
-              {isFavorite(film.id) ? '♥' : '♡'}
-            </button>
+            <ButtonFav film={film} />
           </article>
         ))}
       </div>

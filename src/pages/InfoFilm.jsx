@@ -2,8 +2,8 @@ import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './InfoFilm.css';
 import { useFavorites } from '../context/FavoritesContext';
-import heartRed from './heartRed.svg';
-import heartWhite from './heartWhite.svg';
+import ButtonFav from '../components/button-fav';
+
 import back from './back.svg';
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
@@ -11,7 +11,7 @@ const API_URL = 'https://ghibliapi.vercel.app/films';
 function InfoFilm() {
   const { id } = useParams();
   const [film, setFilm] = useState(null);
-  const [related, setRelated] = useState({ people: []});
+  const [related, setRelated] = useState({ people: [], species: [], locations: [], vehicles: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -43,8 +43,11 @@ function InfoFilm() {
         };
 
         const people = await resolveUrls(data.people);
+        const species = await resolveUrls(data.species); //Borrrar los que no utilizamos
+        const locations = await resolveUrls(data.locations); //Borrrar los que no utilizamos
+        const vehicles = await resolveUrls(data.vehicles); //Borrrar los que no utilizamos
 
-        setRelated({ people});
+        setRelated({ people, species, locations, vehicles }); 
       } catch (err) {
         setError(err.message);
       } finally {
@@ -67,11 +70,8 @@ function InfoFilm() {
         <Link to="/" className="back" aria-label="Volver">
            <img src={back} alt="Volver" className="back-icon" />
         </Link>
-
-        <button className="btn-fav" onClick={()=> toggleFavorite(film)}>
-             <img src={isFavorite(film.id) ? heartRed : heartWhite} alt="corazón" className="heart-icon"/>
-        </button>
-
+        <ButtonFav film={film} />
+        
         <img src={film.movie_banner || film.image} alt={film.title} />
       </div>
 
