@@ -1,7 +1,5 @@
 import './button-fav.css';
 import { useFavorites } from '../context/FavoritesContext';
-import heartRed from '../../public/HeartRed.svg';
-import heartWhite from '../../public/HeartWhite.svg';
 
 function ButtonFav({ film }) {
   // If no film provided, don't try to read film.id
@@ -17,7 +15,7 @@ function ButtonFav({ film }) {
       aria-label={isFavorite(film.id) ? 'Eliminar favorito' : 'Afegir a favorits'}
       title={isFavorite(film.id) ? 'Eliminar favorito' : 'Afegir a favorits'}
     >
-      <img src={isFavorite(film.id) ? heartRed : heartWhite} alt="corazón" className="heart-icon"/>
+      <img src={isFavorite(film.id) ? "/HeartRed.svg" : "/HeartWhite.svg"} alt="corazón" className="heart-icon"/>
     </button>
   );
 }

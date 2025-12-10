@@ -1,6 +1,5 @@
 import './Menu.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import heartIcon from '../../public/heart-icon.svg';
 import { useState, useEffect } from 'react';
 
 function Menu() {
@@ -57,7 +56,7 @@ function Menu() {
             </div>
           ) : (
             <div className="favourites-page contracted-page">
-              <img src={heartIcon} alt="Heart Icon" className="heart-icon" />
+              <img src="/heart-icon.svg" alt="Heart Icon" className="heart-icon" />
             </div>
           )
         ) : (
@@ -66,7 +65,7 @@ function Menu() {
               <Link to="/"><img src="/totoro-icon.svg" alt="Totoro Icon" className="totoro-icon" /></Link>
             </div>
             <div className={`favourites-page`}>
-              <Link to="/favourites"><img src={heartIcon} alt="Heart Icon" className="heart-icon" /></Link>
+              <Link to="/favourites"><img src="/heart-icon.svg" alt="Heart Icon" className="heart-icon" /></Link>
             </div>
           </>
         )}
