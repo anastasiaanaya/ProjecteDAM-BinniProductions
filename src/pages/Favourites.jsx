@@ -1,4 +1,3 @@
-import React from 'react';
 import { useFavorites } from '../context/FavoritesContext';
 import { Link } from 'react-router-dom';
 import './Favourites.css';
