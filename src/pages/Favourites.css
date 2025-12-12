@@ -1,19 +1,49 @@
 /* Favorites.css */
 
 .favorites-container {
-  background: #f3eee0;
   padding: 20px;
   border-radius: 6px;
   max-width: 700px;
-  margin: 20px auto;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  /*margin: 20px auto;*/
+
+}
+
+.favorites-title{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  gap:4px;
 }
 
 .favorites-heading {
-  /*font-family: 'Oswald', sans-serif;*/
-  font-size: 28px;
-  color: #6b442a;
-  margin-bottom: 18px;
+  font-size: 24px;
+  color: #000000;
+  margin: 0px;
+  margin-bottom: 8px;
+  padding: 12px 12px 12px 12px;
+}
+
+.favorites-count{
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  background-color: #FFFAF4;
+  padding: 0px 12px;
+  border-radius: 20px;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.favorites-count p{
+  font-weight: 500;
+  color: #5C694D;
+}
+
+.favorites-count img{
+  max-width: 24px;
 }
 
 .favorites-grid {
@@ -26,7 +56,7 @@
   display: flex;
   gap: 14px;
   align-items: flex-start;
-  background: #efe9d9;
+  background: /*#efe9d9*/ #f4f0e7;
   padding: 12px;
   border-radius: 8px;
   position: relative;
@@ -99,6 +129,7 @@
 .empty-fav {
   text-align: center;
   margin-top: 50px;
+  padding: 20px;
 }
 
 .btn-back {
