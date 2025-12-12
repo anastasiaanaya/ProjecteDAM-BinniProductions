@@ -1,5 +1,5 @@
 .header {
-  height: 100px;
+  /*height: 100px;*/
   position: sticky;
   left: 0;
   top: 0;
@@ -8,7 +8,7 @@
 
 .main-header {
   width: 100%;
-  padding: 37px 20px 10px;
+  padding: 20px 20px 10px;
   background-color: #5C694D;
   color: #FFFAF4;
   box-sizing: border-box;

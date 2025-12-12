@@ -23,11 +23,6 @@
   z-index: 0; /* asegurar que la tarjeta no quede por encima del header */
 }
 
-/* efecto al pasar por encima 
-.film-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.10);
-}*/
 
 .fil-image-wrapper {
   width: 100%;
@@ -48,10 +43,6 @@
   will-change: transform;
 }
 
-/* pequeño zoom al hover 
-.film-card:hover .film-image {
-  transform: scale(1.03);
-}*/
 
 
 .film-card::after {
