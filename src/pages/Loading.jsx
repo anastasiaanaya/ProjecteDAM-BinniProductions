@@ -1,5 +1,5 @@
 import './Loading.css';
-import loadingGif from '../../public/loading-erasedbg_2.gif';
+import loadingGif from '../../public/loading-erasedbg_3.gif';
 function Loading() {
     return (
         <div className="loading-container">
