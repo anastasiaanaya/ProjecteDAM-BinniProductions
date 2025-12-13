@@ -9,18 +9,16 @@ function Menu() {
   const path = location.pathname;
 
   const [searchExpanded, setSearchExpanded] = useState(false);
-  // Search state is now local and synced with the URL query param 'q'.
   const paramsInit = new URLSearchParams(location.search);
   const [searchQuery, setSearchQuery] = useState(paramsInit.get('q') || '');
 
-  // Keep local state in sync if the URL changes (back/forward navigation)
+  // Sincronitzar la URL amb la cerca
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     setSearchQuery(params.get('q') || '');
   }, [location.search]);
 
-  // When navigating away to a film or favourites page, clear the local search
-  // and remove the query param from the URL so searches are not persisted.
+  // Eliminar búsqueda de la URL quan es navega a altres pàgines
   useEffect(() => {
     if (location.pathname.startsWith('/film') || location.pathname.startsWith('/favourites')) {
       if (searchQuery) setSearchQuery('');
@@ -29,6 +27,7 @@ function Menu() {
     }
   }, [location.pathname]);
 
+  // Actualitzar la cerca cada vegada que l'usuari escriu
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearchQuery(value);
@@ -76,7 +75,6 @@ function Menu() {
           className="material-symbols-rounded search-icon"
           onClick={() => {
             setSearchExpanded(true);
-            // al obrir el buscador mantenim la query anterior
           }}
         >
           search
