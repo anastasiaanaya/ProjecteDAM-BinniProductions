@@ -4,6 +4,7 @@ import './HomePage.css';
 import Filters from '../components/filters';
 import ButtonFav from '../components/button-fav';
 import Loading from './Loading';  
+const durada = 3000; // duración mínima en ms (cámbialo)
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
 
@@ -53,6 +54,8 @@ function HomePage() {
   const searchQuery = new URLSearchParams(location.search).get('q') || '';
 
   useEffect(() => {
+    let isMounted = true;
+  const start = Date.now();
     const fetchFilms = async () => {
       try {
         const response = await fetch(API_URL);
@@ -62,10 +65,19 @@ function HomePage() {
       } catch (err) {
         setError(err.message);
       } finally {
-        setLoading(false);
+      const elapsed = Date.now() - start;
+      const remaining = durada - elapsed;
+      if (remaining > 0) {
+        setTimeout(() => {
+          if (isMounted) setLoading(false);
+        }, remaining);
+      } else {
+        if (isMounted) setLoading(false);
+      }
       }
     };
     fetchFilms();
+    return () => { isMounted = false; };
   }, []);
 
   if (loading) return <Loading />;
