@@ -2,6 +2,20 @@ import './Menu.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
+// Detecar si l'usuari està en un ordiandor
+// Fet aquí i no al CSS perquè es canvia la lògica (al contraure despareix meitat de la barra de navegació, es contrau i s'elimna el sliding-marker)
+const useIsDesktop = () => {
+  const [isDesktop, setIsDesktop] = useState(() => (typeof window !== 'undefined' ? window.innerWidth >= 800 : false));
+  
+  useEffect(() => {
+    const onResize = () => setIsDesktop(window.innerWidth >= 800);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  return isDesktop;
+};
+
 function Menu() {
   // Hook per saber a quina pàgina es troba l'usuari
   const location = useLocation();
@@ -12,15 +26,8 @@ function Menu() {
   const paramsInit = new URLSearchParams(location.search);
   const [searchQuery, setSearchQuery] = useState(paramsInit.get('q') || '');
 
-  // Track viewport size so we only use the "contracted" single-icon layout
-  // on small screens; desktop should keep both page links visible.
-  const [isDesktop, setIsDesktop] = useState(() => (typeof window !== 'undefined' ? window.innerWidth >= 768 : false));
-
-  useEffect(() => {
-    const onResize = () => setIsDesktop(window.innerWidth >= 768);
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
+  const isDesktop = useIsDesktop();
+  const isContracted = searchExpanded && !isDesktop;
 
   // Sincronitzar la URL amb la cerca
   useEffect(() => {
@@ -50,19 +57,12 @@ function Menu() {
 
   return (
     <nav className="navigation-menu">
-      {/* Only add the visual 'contracted' class on small screens. On desktop we
-          want to keep the full pages pill and both links visible when the
-          search expands. */}
-      <div className={`navigation-pages${(searchExpanded && !isDesktop) ? ' contracted' : ''}`}> 
-        {/* sliding marker: hide when search is expanded on small screens
-            (contracted single-icon mode). */}
-        {!(searchExpanded && !isDesktop) && (
+      <div className={`navigation-pages${isContracted ? ' contracted' : ''}`}> 
+        {!isContracted && (
           <div className={`sliding-marker${(path === '/' || path.startsWith('/film')) ? ' home' : (path.startsWith('/favourites') ? ' favourites' : ' home')}`} />
         )}
 
-        {/* If search is expanded and we're on a small screen, render the
-            contracted single icon. Otherwise show both page links. */}
-        {(searchExpanded && !isDesktop) ? (
+        {isContracted ? (
           (path === '/' || path.startsWith('/film')) ? (
             <div className="home-page contracted-page">
               <img src="/totoro-icon.svg" alt="Totoro Icon" className="totoro-icon" />
