@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import './InfoFilm.css';
 import { useFavorites } from '../context/FavoritesContext';
 import ButtonFav from '../components/button-fav';
+import Loading from './Loading';  
 
 import back from '../../public/back.svg';
 
@@ -60,7 +61,7 @@ function InfoFilm() {
 
     const { toggleFavorite, isFavorite } = useFavorites();
 
-  if (loading) return <p>Carregant pel·lícules...</p>;
+  if (loading) return <Loading />;
   if (error) return <div className="error-message">Error: {error}</div>;
   if (!film) return <div>No s'ha trobat la pel·lícula'</div>;
 

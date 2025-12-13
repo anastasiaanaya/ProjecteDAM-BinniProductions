@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import './HomePage.css';
 import Filters from '../components/filters';
 import ButtonFav from '../components/button-fav';
+import Loading from './Loading';  
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
 
@@ -67,7 +68,7 @@ function HomePage() {
     fetchFilms();
   }, []);
 
-  if (loading) return <p>Carregant pel·lícules...</p>;
+  if (loading) return <Loading />;
   if (error) return <div className="error-message">Error: {error}</div>;
 
   const normalizedQuery = (searchQuery || '').trim().toLowerCase();
