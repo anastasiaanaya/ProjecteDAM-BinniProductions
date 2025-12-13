@@ -43,7 +43,7 @@ const sortFilms = (films, option) => {
   });
 };
 
-function HomePage() {
+function HomePage(setAppLoading) {
   const [films, setFilms] = useState([]);
   const [sortOption, setSortOption] = useState("");
   const [loading, setLoading] = useState(true);
@@ -56,6 +56,10 @@ function HomePage() {
   useEffect(() => {
     let isMounted = true;
   const start = Date.now();
+    if (typeof setAppLoading === 'function') {
+    setAppLoading(loading);
+  }
+
     const fetchFilms = async () => {
       try {
         const response = await fetch(API_URL);
@@ -77,8 +81,10 @@ function HomePage() {
       }
     };
     fetchFilms();
-    return () => { isMounted = false; };
-  }, []);
+    return () => { 
+     if (typeof setAppLoading === 'function') setAppLoading(false);     
+      isMounted = false; };
+  }, [setAppLoading]);
 
   if (loading) return <Loading />;
   if (error) return <div className="error-message">Error: {error}</div>;

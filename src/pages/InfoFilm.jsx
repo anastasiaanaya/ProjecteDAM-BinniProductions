@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 import './InfoFilm.css';
 import { useFavorites } from '../context/FavoritesContext';
 import ButtonFav from '../components/button-fav';
-import Loading from './Loading';  
-
+import Loading from './Loading';
 import back from '../../public/back.svg';
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
