@@ -9,6 +9,11 @@
     box-sizing: border-box;
 }
 
+/* keep some gap between the pages block and the search bar */
+.navigation-menu {
+    gap: 12px;
+}
+
 .navigation-pages {
     background-color: #5C694D;
     height: 48px;
@@ -81,14 +86,99 @@
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
 }
 
 .search-bar.expanded {
+    /* mobile / small screens: keep a reasonable fixed width */
     width: 270px;
     justify-content: flex-start;
     padding-left: 12px;
     background-color: #D1CBA9;
 }
+
+/* On wider screens let the search area grow to fill the available space
+   leaving room for the navigation-pages block. The max-width calcs
+   ensure a visible margin between elements on different breakpoints. */
+@media (min-width: 768px) {
+    .search-bar.expanded {
+        width: auto;
+        flex: 1 1 auto;
+        /* leave a bit more room by default so the expanded search keeps
+           a comfortable gap from the pages pill */
+        max-width: calc(100% - 220px);
+    }
+}
+
+@media (min-width: 1024px) {
+    .search-bar.expanded {
+        /* on large desktops leave a bit more room */
+        max-width: calc(100% - 220px);
+    }
+}
+
+/* Center the whole navigation group on larger screens while keeping
+     the left-aligned layout on mobile. */
+@media (min-width: 768px) {
+    .navigation-menu {
+        /* center the fixed navigation container without using transform so
+           fixed-position children remain positioned relative to the
+           viewport (avoids creating a transform-containing block). */
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        /* keep the same visual padding but let max-width cap expansion */
+        width: calc(100% - 56px);
+        max-width: 1200px;
+        padding-left: 28px;
+        padding-right: 28px;
+        box-sizing: border-box;
+        transform: none;
+    }
+
+    /* put the pages pill back into the normal flow and center it */
+    .navigation-pages {
+        position: relative;
+        left: auto;
+        transform: none;
+        margin: 0 auto;
+        z-index: 2;
+    }
+
+    /* keep the search icon fixed to the right edge of the centered container */
+    /* Keep the search visually stuck to the right edge of the viewport
+       on wide screens. Using fixed positioning ensures it always stays
+       glued to the right, independent of the centered container width. */
+    .search-bar {
+        position: fixed;
+        right: 28px;
+        bottom: 28px;
+        top: auto;
+        transform: none;
+        z-index: 3;
+    }
+
+    /* make the expanded search adapt to viewport size but stay within
+       reasonable min/max bounds so it never overlaps or overflows */
+    .search-bar.expanded {
+        /* Use min() inside clamp so the expanded search never becomes
+           wider than roughly half the viewport minus a gap (160px).
+           This prevents it from touching the centered pages pill. */
+        width: clamp(270px, min(36vw, calc(50vw - 160px)), 640px);
+    }
+
+    /* On desktop keep the pages pill from collapsing to the contracted
+       circular form when the search opens — keep its normal width. */
+    .navigation-pages.contracted {
+        width: 140px;
+        height: 48px;
+        border-radius: 48px;
+        padding: 0 8px;
+        transition: none;
+    }
+}
+
 
 .search-bar .search-icon {
     color: white;

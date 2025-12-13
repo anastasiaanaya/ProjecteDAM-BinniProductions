@@ -12,6 +12,16 @@ function Menu() {
   const paramsInit = new URLSearchParams(location.search);
   const [searchQuery, setSearchQuery] = useState(paramsInit.get('q') || '');
 
+  // Track viewport size so we only use the "contracted" single-icon layout
+  // on small screens; desktop should keep both page links visible.
+  const [isDesktop, setIsDesktop] = useState(() => (typeof window !== 'undefined' ? window.innerWidth >= 768 : false));
+
+  useEffect(() => {
+    const onResize = () => setIsDesktop(window.innerWidth >= 768);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   // Sincronitzar la URL amb la cerca
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -40,15 +50,19 @@ function Menu() {
 
   return (
     <nav className="navigation-menu">
-      {/* Si la barra de búsqueda està oberta s'afegeix la classe contracted, sinó res */}
-      <div className={`navigation-pages${searchExpanded ? ' contracted' : ''}`}> 
-        
-        {!searchExpanded && (
-          // Afegir la classe sliding-marker (icona seleccionada del menú) segons la pàgina on es troba l'usuari
+      {/* Only add the visual 'contracted' class on small screens. On desktop we
+          want to keep the full pages pill and both links visible when the
+          search expands. */}
+      <div className={`navigation-pages${(searchExpanded && !isDesktop) ? ' contracted' : ''}`}> 
+        {/* sliding marker: hide when search is expanded on small screens
+            (contracted single-icon mode). */}
+        {!(searchExpanded && !isDesktop) && (
           <div className={`sliding-marker${(path === '/' || path.startsWith('/film')) ? ' home' : (path.startsWith('/favourites') ? ' favourites' : ' home')}`} />
         )}
 
-        {searchExpanded ? (
+        {/* If search is expanded and we're on a small screen, render the
+            contracted single icon. Otherwise show both page links. */}
+        {(searchExpanded && !isDesktop) ? (
           (path === '/' || path.startsWith('/film')) ? (
             <div className="home-page contracted-page">
               <img src="/totoro-icon.svg" alt="Totoro Icon" className="totoro-icon" />
@@ -74,7 +88,7 @@ function Menu() {
         <span
           className="material-symbols-rounded search-icon"
           onClick={() => {
-            setSearchExpanded(true);
+            setSearchExpanded(prev => !prev);
           }}
         >
           search
