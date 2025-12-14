@@ -20,7 +20,8 @@ function Loading() {
   return (
     <div className="loading-overlay" role="status" aria-live="polite" aria-busy="true">
       <div className="loading-container">
-        <img src="/loading-mobile.svg" alt="Carregant..." className="loading-image" />
+        {/* Imagen principal de loading (se cambia con media queries) */}
+        <img src="/loading-mobile.svg" alt="Carregant..." className="loading-image" /> 
         <div className="gif-loading">
           <img src={loadingGif} alt="Carregant..." className="loading-gif" />
         </div>
