@@ -32,12 +32,16 @@ function Menu() {
   // Sincronitzar la URL amb la cerca
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    setSearchQuery(params.get('q') || '');
-  }, [location.search]);
+    const q = params.get('q') || '';
+    setSearchQuery(q);
+    if (location.pathname === '/' && q) {
+      setSearchExpanded(true);
+    }
+  }, [location.search, location.pathname]);
 
-  // Eliminar búsqueda de la URL quan es navega a altres pàgines
+  // Eliminar búsqueda de la URL quan es mira detalls d'una pel·lícula
   useEffect(() => {
-    if (location.pathname.startsWith('/film') || location.pathname.startsWith('/favourites')) {
+    if (location.pathname.startsWith('/film')) {
       if (searchQuery) setSearchQuery('');
       if (location.search) navigate(location.pathname, { replace: true });
       setSearchExpanded(false);
@@ -48,10 +52,19 @@ function Menu() {
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearchQuery(value);
-    if (value.trim()) {
-      navigate(`/?q=${encodeURIComponent(value)}`, { replace: true });
+    const encoded = encodeURIComponent(value);
+    if (location.pathname.startsWith('/favourites')) {
+      if (value.trim()) {
+        navigate(`/favourites?q=${encoded}`, { replace: true });
+      } else {
+        navigate('/favourites', { replace: true });
+      }
     } else {
-      navigate('/', { replace: true });
+      if (value.trim()) {
+        navigate(`/?q=${encoded}`, { replace: true });
+      } else {
+        navigate('/', { replace: true });
+      }
     }
   };
 

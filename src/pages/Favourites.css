@@ -133,3 +133,13 @@
   padding: 8px 12px;
   border-radius: 6px;
 }
+
+.no-results-actions .search-all {
+  background: #5C694D;
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+}

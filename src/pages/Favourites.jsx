@@ -1,9 +1,20 @@
 import { useFavorites } from '../context/FavoritesContext';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Favourites.css';
 
 function FavoritesPage() {
   const { favorites, toggleFavorite } = useFavorites();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const q = (params.get('q') || '').toLowerCase().trim();
+  const navigate = useNavigate();
+
+  const filtered = q
+    ? (favorites || []).filter((film) => {
+        const hay = `${film.title || ''} ${film.original_title || ''} ${film.director || ''}`.toLowerCase();
+        return hay.includes(q);
+      })
+    : favorites || [];
 
   if (!favorites || favorites.length === 0) {
     return (
@@ -15,17 +26,36 @@ function FavoritesPage() {
       </div>
     );
   }
+  if (filtered.length === 0) {
+    const qRaw = params.get('q') || '';
+    const encoded = encodeURIComponent(qRaw);
+    return (
+      <div className="empty-fav">
+        <img src="/NoFavPonyo.svg" alt="No results" className="img-ponyo"/>
+        <h2>It looks like none of your favourites match your search.</h2>
+
+        <div className="no-results-actions">
+          <button
+            className="search-all"
+            onClick={() => navigate(`/?q=${encoded}`)}
+          >
+            Search in all films
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="favorites-container">
       <div className="favorites-title">
         <h2 className="favorites-heading">Your favorites</h2>
-        <p className="favorites-count">{favorites.length} saved movies</p>
+        <p className="favorites-count">{filtered.length} saved movies</p>
       </div>
       
 
       <div className="favorites-grid">
-        {favorites.map((film) => (
+        {filtered.map((film) => (
           <article key={film.id} className="film-card">
 
             <div className="film-actions">
