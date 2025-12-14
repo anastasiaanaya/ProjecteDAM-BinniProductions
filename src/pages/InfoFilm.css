@@ -109,8 +109,8 @@
 
 @media (min-width: 600px) {
   .film-banner-wrap { height: 380px; }
-  .poster-wrap img { max-width: 320px; width: 48%; }
-}
+  .poster-wrap img { max-width: 320px; width: 48%; }}
+  .film-detail { background-color:#F2EDDA; }
 
 @media (min-width: 900px) {
   .film-content {

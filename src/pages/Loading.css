@@ -1,30 +1,44 @@
-.loading-container {
+.loading-overlay {
+  position: fixed;
+  inset: 0;                     /* top, laterales y bottom a 0 */
+  width: 100vw;
+  height: 100dvh;               
+  min-height: 100vh;            
+  z-index: 0;                   /* Lo he bajado */
+  overflow: hidden;             /* se evita que aparezca una "scrollband" */
   display: flex;
-  width: 100%;
-  height: 100vh;        /* ocupa toda la altura de la ventana */
-  margin: none;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #5C694D;    /* color de fondo mientras carga la imagen de fondo (es el mismo que el fondo de la img) */
 }
 
-/* Imagen principal de loading (se cambia con media queries) */
-.loading-image {
+
+.loading-container {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;       /* la img cubre todo */
+  /* imgen por defecto la de la versión movil */
+  background-image: url("/loading-mobile.svg");
 }
 
 .gif-loading {
-  position: fixed;           /* pegado a la ventana */
-  left: 50%;                 /* centrar horizontalmente */
-  bottom: 100px;              /* separación inferior (ajusta a tu gusto) */
+  position: absolute;
+  left: 50%;
+  bottom: 100px;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;      /* que no interfiera con clicks */
-  z-index: 1000;             /* por encima de contenidos */
+  pointer-events: none; /* que no interfiera con clicks */
+  z-index: 2;
 }
 
 .loading-gif {
@@ -32,27 +46,23 @@
   height: 290px;
   display: block;
   object-fit: contain;
-
 }
 
-
-/* Por defecto: móvil → se usa el src del JSX (loading-mobile.svg) */
-
-/* En pantallas a partir de 600px cambiamos a desktop */
+/* versión de escritorio se cambia la img a la que se ajusta mejor a esta versión */
 @media (min-width: 600px) {
   .loading-container {
-    background-color: #000; /* cambiar al color de la imágen para que no se vea el hueco que queda */
-  }
-  .loading-image {
-    content: url("/loading-desktop.svg");
+    background-image: url("/loading-desktop.svg");
   }
 }
 
+
+
 @media (min-width: 900px) {
-  .loading-container {
-    background-color: #F2EDDA; /* cambiar igual que arriba */
+  .loading-overlay {
+    background-color: #5C694D;
   }
-  .loading-image {
-    content: url("/loading-desktop.svg");
+
+  .loading-container {
+    background-image: url("/loading-desktop.svg");
   }
 }

@@ -4,14 +4,14 @@ import { useEffect } from 'react';
 
 function Loading() {
   useEffect(() => {
-    // Prevent background scrolling while the loading overlay is visible
+    // No deja hacer scroll mientras se muestra el loading
     const prevBodyOverflow = document.body.style.overflow;
     const prevHtmlOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
 
     return () => {
-      // Restore previous scroll behaviour
+      // Restaurar el scroll al quitar el loading
       document.body.style.overflow = prevBodyOverflow || '';
       document.documentElement.style.overflow = prevHtmlOverflow || '';
     };
@@ -19,9 +19,8 @@ function Loading() {
 
   return (
     <div className="loading-overlay" role="status" aria-live="polite" aria-busy="true">
-      <div className="loading-container">
-        {/* Imagen principal de loading (se cambia con media queries) */}
-        <img src="/loading-mobile.svg" alt="Carregant..." className="loading-image" /> 
+      {/* jacemos esto para que la imagen se cargue desde el css de loading-container */}
+      <div className="loading-container" aria-hidden="true">
         <div className="gif-loading">
           <img src={loadingGif} alt="Carregant..." className="loading-gif" />
         </div>
