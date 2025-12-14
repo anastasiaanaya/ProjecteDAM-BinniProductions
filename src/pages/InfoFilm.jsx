@@ -11,7 +11,7 @@ const API_URL = 'https://ghibliapi.vercel.app/films';
 function InfoFilm() {
   const { id } = useParams();
   const [film, setFilm] = useState(null);
-  const [related, setRelated] = useState({ people: [], species: [], locations: [], vehicles: [] });
+  const [people, setPeople] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -19,10 +19,10 @@ function InfoFilm() {
     const fetchFilm = async () => {
       try {
         const res = await fetch(`${API_URL}/${id}`);
-        if
-        (!res.ok) throw new Error(`HTTP ${res.status}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         setFilm(data);
+
         const resolveUrls = async (urls = []) => {
           if (!urls || urls.length === 0) return [];
           const out = [];
@@ -42,12 +42,8 @@ function InfoFilm() {
           return out;
         };
 
-        const people = await resolveUrls(data.people);
-        const species = await resolveUrls(data.species); //Borrrar los que no utilizamos
-        const locations = await resolveUrls(data.locations); //Borrrar los que no utilizamos
-        const vehicles = await resolveUrls(data.vehicles); //Borrrar los que no utilizamos
-
-        setRelated({ people, species, locations, vehicles }); 
+        const resolvedPeople = await resolveUrls(data.people);
+        setPeople(resolvedPeople);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -58,20 +54,20 @@ function InfoFilm() {
     fetchFilm();
   }, [id]);
 
-    const { toggleFavorite, isFavorite } = useFavorites();
+  const { toggleFavorite, isFavorite } = useFavorites();
 
   if (loading) return <Loading />;
   if (error) return <div className="error-message">Error: {error}</div>;
-  if (!film) return <div>No s'ha trobat la pel·lícula'</div>;
+  if (!film) return <div>No s'ha trobat la pel·lícula</div>;
 
   return (
     <div className="film-detail">
       <div className="film-banner-wrap">
         <Link to="/" className="back" aria-label="Volver">
-           <img src={back} alt="Volver" className="back-icon" />
+          <img src={back} alt="Volver" className="back-icon" />
         </Link>
         <ButtonFav film={film} />
-        
+
         <img src={film.movie_banner || film.image} alt={film.title} />
       </div>
 
@@ -82,7 +78,7 @@ function InfoFilm() {
 
         <p className="film-desc">{film.description}</p>
 
-        <div className="meta-group"><strong>Characters:</strong> {related.people.join(', ') || '—'}</div>
+        <div className="meta-group"><strong>Characters:</strong> {people.join(', ') || '—'}</div>
         <div className="meta-group"><strong>Director:</strong> {film.director}</div>
         <div className="meta-group"><strong>Producer:</strong> {film.producer}</div>
 
