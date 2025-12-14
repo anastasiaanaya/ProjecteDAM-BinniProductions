@@ -7,13 +7,14 @@ function Filters({ sortOption, setSortOption, SORT_OPTIONS }) {
       onChange={(e) => setSortOption(e.target.value)}
       className="filter-select"
     >
-      <option value="" disabled>Filtres</option>
-      <option value={SORT_OPTIONS.DATA_ASC}>Data estrena ↑</option>
-      <option value={SORT_OPTIONS.DATA_DESC}>Data estrena ↓</option>
-      <option value={SORT_OPTIONS.TEMPS_ASC}>Durada ↑</option>
-      <option value={SORT_OPTIONS.TEMPS_DESC}>Durada ↓</option>
-      <option value={SORT_OPTIONS.VALORACIO_ASC}>Valoració ↑</option>
-      <option value={SORT_OPTIONS.VALORACIO_DESC}>Valoració ↓</option>
+      <option value="" disabled>Filters</option>
+<option value={SORT_OPTIONS.DATA_DESC}>📅 Most recent</option>
+<option value={SORT_OPTIONS.DATA_ASC}>📅 Oldest</option>
+<option value={SORT_OPTIONS.TEMPS_DESC}>⏱️ Longest</option>
+<option value={SORT_OPTIONS.TEMPS_ASC}>⏱️ Shortest</option>
+<option value={SORT_OPTIONS.VALORACIO_DESC}>⭐ Highest rated</option>
+<option value={SORT_OPTIONS.VALORACIO_ASC}>⭐ Lowest rated</option>
+
     </select>
   );
 }
