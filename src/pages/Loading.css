@@ -19,41 +19,6 @@
   z-index: 1000;             /* por encima de contenidos */
 }
 
-/* pseudo-elemento que muestra el SVG como fondo y es responsive */
-.gif-loading::before {
-  content: "";
-  display: block;
-  /* ancho responsive: entre 140px y 420px, relativo al viewport */
-  width: clamp(140px, 36vw, 420px);
-  /* mantener proporción (ajusta ratio para que cuadre con los SVG) */
-  aspect-ratio: 16 / 9;
-  background-image: url('/loading-desktop.svg'); /* ruta: public/loading-desktop.svg */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-
-/* Ajustes para pantallas móviles: usar SVG móvil y tamaños menores */
-@media (max-width: 480px) {
-  .gif-loading {
-    bottom: 60px;
-  }
-  .gif-loading::before {
-    width: clamp(110px, 40vw, 260px);
-    aspect-ratio: 1 / 1; /* si tu loading-mobile.svg es más cuadrado, ajusta */
-    background-image: url('/loading-mobile.svg'); /* ruta: public/loading-mobile.svg */
-  }
-}
-
-/* Para pantallas muy grandes, ampliar un poco */
-@media (min-width: 1200px) {
-  .gif-loading::before {
-    width: clamp(300px, 28vw, 560px);
-    aspect-ratio: 16 / 9;
-  }
-}
-
 
 .loading-gif {
   width: auto;
