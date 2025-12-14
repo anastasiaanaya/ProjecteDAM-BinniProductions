@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .gif-loading {
   position: fixed;           /* pegado a la ventana */
   left: 50%;                 /* centrar horizontalmente */
@@ -21,7 +22,7 @@
 
 .loading-gif {
   width: auto;
-  height: 200px;
+  height: 290px;
   display: block;
   object-fit: contain;
 
