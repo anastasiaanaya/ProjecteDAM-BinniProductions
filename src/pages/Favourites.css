@@ -10,36 +10,24 @@
 
 .favorites-title{
   display:flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
   gap:4px;
+  padding: 12px 12px 20px 12px;
 }
 
 .favorites-heading {
   font-size: 24px;
   color: #000000;
   margin: 0px;
-  margin-bottom: 8px;
-  padding: 12px 12px 12px 12px;
+
 }
 
-.favorites-count{
-  display: flex;
-  flex-direction: row;
-  gap: 3px;
-  background-color: #FFFAF4;
-  padding: 0px 12px;
-  border-radius: 20px;
-  width: 32px;
-  height: 32px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 12px;
-}
 
-.favorites-count p{
-  font-weight: 500;
+.favorites-count {
+  font-weight: 450;
   color: #5C694D;
+  font-size: 14px;
+  margin: 0;
 }
 
 .favorites-count img{
@@ -55,11 +43,12 @@
 .film-card {
   display: flex;
   gap: 14px;
-  align-items: flex-start;
-  background: /*#efe9d9*/ #f4f0e7;
+  align-items: center;
+  background: #f4f0e7; /* abans era #efe9d9*/
   padding: 12px;
   border-radius: 8px;
   position: relative;
+  overflow: visible;
 }
 
 .film-poster {
@@ -98,19 +87,22 @@
   margin-bottom: 10px;
 }
 
-.film-actions {
-  margin-top: auto;
-  display: flex;
-  gap: 10px;
-  align-items: center;
+.film-actions{
+  position:absolute;
+  top:8px;
+  right:8px;
+  
+}
+.pill-toggle {
+  border: none;
+  padding: 8px;
 }
 
-.pill-toggle {
-  background: #dfe1c4;
-  border: 1px solid #b9bda2;
-  padding: 6px 10px;
-  border-radius: 20px;
-  cursor: pointer;
+.film-right{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  gap: 16px;
 }
 
 .search-btn {
