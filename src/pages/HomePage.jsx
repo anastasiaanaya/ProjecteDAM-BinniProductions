@@ -116,15 +116,22 @@ function HomePage(setAppLoading) {
       </div>
 
       <div className="films-grid">
-        {sortedFilms.map((film) => (
-          <article key={film.id} className="film-card">
-            <Link to={`/film/${film.id}`}>
-              <img src={film.image} alt={film.title} className="film-image" />
-            </Link>
-            {/* Botón favorito flotante */}
-            <ButtonFav film={film} />
-          </article>
-        ))}
+        {sortedFilms.length === 0 && normalizedQuery ? (
+          <div className="no-results">
+            <img src="/NoResultsSearch.svg" alt="No results" className="no-results-image" />
+            <p>No movies match your search.</p>
+          </div>
+        ) : (
+          sortedFilms.map((film) => (
+            <article key={film.id} className="film-card">
+              <Link to={`/film/${film.id}`}>
+                <img src={film.image} alt={film.title} className="film-image" />
+              </Link>
+              {/* Botón favorito flotante */}
+              <ButtonFav film={film} />
+            </article>
+          ))
+        )}
       </div>
     </div>
   );

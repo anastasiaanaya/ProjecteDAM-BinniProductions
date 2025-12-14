@@ -30,9 +30,9 @@ function FavoritesPage() {
     const qRaw = params.get('q') || '';
     const encoded = encodeURIComponent(qRaw);
     return (
-      <div className="empty-fav">
-        <img src="/NoFavPonyo.svg" alt="No results" className="img-ponyo"/>
-        <h2>It looks like none of your favourites match your search.</h2>
+      <div className="empty-fav-search">
+        <img src="/NoResultsSearch.svg" alt="No results"/>
+        <p>It looks like none of your favourites match your search.</p>
 
         <div className="no-results-actions">
           <button
