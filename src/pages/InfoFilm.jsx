@@ -63,18 +63,21 @@ function InfoFilm() {
   return (
     <div className="film-detail">
       <div className="film-banner-wrap">
-        <Link to="/" className="back" aria-label="Volver">
+        <div className="info-film-buttons">
+          <Link to="/" className="back" aria-label="Volver">
           <img src={back} alt="Volver" className="back-icon" />
         </Link>
-        <ButtonFav film={film} />
+        <ButtonFav className="button-fav" film={film} />
+        </div>
+        
 
         <img src={film.movie_banner || film.image} alt={film.title} />
       </div>
 
       <div className="film-content">
         <div className="film-original">{film.original_title}</div>
-        <h2 className="film-title">{film.title}</h2>
-        <div className="film-meta">{film.release_date} | {film.running_time}' | ★ {film.rt_score}</div>
+        <h2 className="film-name">{film.title}</h2>
+        <div className="film-data">{film.release_date} | {film.running_time}' | ★ {film.rt_score}</div>
 
         <p className="film-desc">{film.description}</p>
 

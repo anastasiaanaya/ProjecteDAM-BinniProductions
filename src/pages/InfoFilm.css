@@ -8,7 +8,7 @@
 .film-banner-wrap {
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 220px;
   overflow: hidden;
   background: #000;
 }
@@ -20,11 +20,9 @@
   -webkit-user-drag: none;
 }
 
-.back,
-.btn-fav {
+.back {
   position: absolute;
-  top: 18px;
-  width: 46px;
+  width: 60px;
   height: 46px;
   display: inline-flex;
   align-items: center;
@@ -33,15 +31,18 @@
   box-shadow: none;
   border: none;
   cursor: pointer;
+  padding:16px;
 }
-.back { left: 16px; }
-.btn-fav  { right: 16px; }
+
+.button-fav{
+  padding:16px;
+}
 
 .film-content {
   background: #F2EDDA;
   border-radius: 18px 18px 0 0;
   margin-top: -22px;
-  padding: 22px 20px 120px;
+  padding: 40px 20px 20px;
   box-shadow: 0 -2px 18px rgba(0,0,0,0.04);
 }
 
@@ -53,14 +54,14 @@
   opacity: 0.95;
 }
 
-.film-title {
+.film-name {
   font-size: 26px;
   font-weight: 700;
   margin: 0 0 8px 0;
   letter-spacing: -0.2px;
 }
 
-.film-meta {
+.film-data {
   color: #6b6b6b;
   font-weight: 600;
   font-size: 14px;
@@ -75,12 +76,11 @@
 
 .meta-group {
   margin-bottom: 14px;
-  font-size: 14px;
+  font-size: 15px;
   color: #111214;
 }
 .meta-group strong {
   display: inline-block;
-  width: 110px;
   color: #111214;
   font-weight: 700;
 }
@@ -107,6 +107,10 @@
   border-radius: 8px;
 }
 
+.info-film-buttons{
+  display: flex;
+}
+
 @media (min-width: 600px) {
   .film-banner-wrap { height: 380px; }
   .poster-wrap img { max-width: 320px; width: 48%; }}
@@ -121,6 +125,6 @@
     padding: 36px;
   }
   .film-banner-wrap { height: 420px; }
-  .film-title { font-size: 34px; }
+  .film-name { font-size: 34px; }
   .floating-actions { left: calc(50% - 420px); }
 }
