@@ -3,7 +3,7 @@ import HomePage from './pages/HomePage';
 import InfoFilm from './pages/InfoFilm';
 import Header from './components/Header';
 import Menu from './components/Menu';
-import Footer from './components/Footer';
+
 import Favourites from './pages/Favourites';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
   </Routes>
 
   <Menu />
-  <Footer />
+  
     </div>
    
 

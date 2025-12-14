@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './HomePage.css';
 import Filters from '../components/filters';
-import { useFavorites } from '../context/FavoritesContext';
+import ButtonFav from '../components/button-fav';
+import Loading from './Loading';  
+const durada = 3000; // duración mínima en ms (cámbialo)
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
 
@@ -41,17 +43,23 @@ const sortFilms = (films, option) => {
   });
 };
 
-function HomePage() {
+function HomePage(setAppLoading) {
   const [films, setFilms] = useState([]);
   const [sortOption, setSortOption] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Favorites context
-  const { favorites, toggleFavorite } = useFavorites();
-  const isFavorite = (id) => favorites.some(f => f.id === id);
+  // Read search query from URL query param 'q' so searches are not persisted in context
+  const location = useLocation();
+  const searchQuery = new URLSearchParams(location.search).get('q') || '';
 
   useEffect(() => {
+    let isMounted = true;
+  const start = Date.now();
+    if (typeof setAppLoading === 'function') {
+    setAppLoading(loading);
+  }
+
     const fetchFilms = async () => {
       try {
         const response = await fetch(API_URL);
@@ -61,16 +69,41 @@ function HomePage() {
       } catch (err) {
         setError(err.message);
       } finally {
-        setLoading(false);
+      const elapsed = Date.now() - start;
+      const remaining = durada - elapsed;
+      if (remaining > 0) {
+        setTimeout(() => {
+          if (isMounted) setLoading(false);
+        }, remaining);
+      } else {
+        if (isMounted) setLoading(false);
+      }
       }
     };
     fetchFilms();
-  }, []);
+    return () => { 
+     if (typeof setAppLoading === 'function') setAppLoading(false);     
+      isMounted = false; };
+  }, [setAppLoading]);
 
-  if (loading) return <p>Carregant pel·lícules...</p>;
+  if (loading) return <Loading />;
   if (error) return <div className="error-message">Error: {error}</div>;
 
-  const sortedFilms = sortFilms(films, sortOption);
+  const normalizedQuery = (searchQuery || '').trim().toLowerCase();
+
+  const filteredFilms = normalizedQuery
+    ? films.filter(f => {
+        // Buscamos en título, director, productor y año
+        return (
+          (f.title || '').toLowerCase().includes(normalizedQuery) ||
+          (f.director || '').toLowerCase().includes(normalizedQuery) ||
+          (f.producer || '').toLowerCase().includes(normalizedQuery) ||
+          (f.release_date || '').toLowerCase().includes(normalizedQuery)
+        );
+      })
+    : films;
+
+  const sortedFilms = sortFilms(filteredFilms, sortOption);
 
   return (
     <div className="homePage-container">
@@ -88,16 +121,8 @@ function HomePage() {
             <Link to={`/film/${film.id}`}>
               <img src={film.image} alt={film.title} className="film-image" />
             </Link>
-
             {/* Botón favorito flotante */}
-            <button
-              className={`fav-btn ${isFavorite(film.id) ? 'is-fav' : ''}`}
-              onClick={() => toggleFavorite(film)}
-              aria-label={isFavorite(film.id) ? 'Eliminar favorito' : 'Afegir a favorits'}
-              title={isFavorite(film.id) ? 'Eliminar favorito' : 'Afegir a favorits'}
-            >
-              {isFavorite(film.id) ? '♥' : '♡'}
-            </button>
+            <ButtonFav film={film} />
           </article>
         ))}
       </div>

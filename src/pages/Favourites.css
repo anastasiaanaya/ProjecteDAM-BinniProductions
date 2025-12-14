@@ -1,19 +1,37 @@
 /* Favorites.css */
 
 .favorites-container {
-  background: #f3eee0;
   padding: 20px;
   border-radius: 6px;
   max-width: 700px;
-  margin: 20px auto;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  /*margin: 20px auto;*/
+
+}
+
+.favorites-title{
+  display:flex;
+  flex-direction: column;
+  gap:4px;
+  padding: 12px 12px 20px 12px;
 }
 
 .favorites-heading {
-  /*font-family: 'Oswald', sans-serif;*/
-  font-size: 28px;
-  color: #6b442a;
-  margin-bottom: 18px;
+  font-size: 24px;
+  color: #000000;
+  margin: 0px;
+
+}
+
+
+.favorites-count {
+  font-weight: 450;
+  color: #5C694D;
+  font-size: 14px;
+  margin: 0;
+}
+
+.favorites-count img{
+  max-width: 24px;
 }
 
 .favorites-grid {
@@ -25,11 +43,12 @@
 .film-card {
   display: flex;
   gap: 14px;
-  align-items: flex-start;
-  background: #efe9d9;
+  align-items: center;
+  background: #f4f0e7; /* abans era #efe9d9*/
   padding: 12px;
   border-radius: 8px;
   position: relative;
+  overflow: visible;
 }
 
 .film-poster {
@@ -68,19 +87,22 @@
   margin-bottom: 10px;
 }
 
-.film-actions {
-  margin-top: auto;
-  display: flex;
-  gap: 10px;
-  align-items: center;
+.film-actions{
+  position:absolute;
+  top:8px;
+  right:8px;
+  
+}
+.pill-toggle {
+  border: none;
+  padding: 8px;
 }
 
-.pill-toggle {
-  background: #dfe1c4;
-  border: 1px solid #b9bda2;
-  padding: 6px 10px;
-  border-radius: 20px;
-  cursor: pointer;
+.film-right{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  gap: 16px;
 }
 
 .search-btn {
@@ -99,6 +121,7 @@
 .empty-fav {
   text-align: center;
   margin-top: 50px;
+  padding: 20px;
 }
 
 .btn-back {

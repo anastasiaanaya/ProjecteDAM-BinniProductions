@@ -2,16 +2,16 @@ import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './InfoFilm.css';
 import { useFavorites } from '../context/FavoritesContext';
-import heartRed from './heartRed.svg';
-import heartWhite from './heartWhite.svg';
-import back from './back.svg';
+import ButtonFav from '../components/button-fav';
+import Loading from './Loading';
+import back from '../../public/back.svg';
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
 
 function InfoFilm() {
   const { id } = useParams();
   const [film, setFilm] = useState(null);
-  const [related, setRelated] = useState({ people: []});
+  const [people, setPeople] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -19,10 +19,10 @@ function InfoFilm() {
     const fetchFilm = async () => {
       try {
         const res = await fetch(`${API_URL}/${id}`);
-        if
-        (!res.ok) throw new Error(`HTTP ${res.status}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         setFilm(data);
+
         const resolveUrls = async (urls = []) => {
           if (!urls || urls.length === 0) return [];
           const out = [];
@@ -42,9 +42,8 @@ function InfoFilm() {
           return out;
         };
 
-        const people = await resolveUrls(data.people);
-
-        setRelated({ people});
+        const resolvedPeople = await resolveUrls(data.people);
+        setPeople(resolvedPeople);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -55,22 +54,19 @@ function InfoFilm() {
     fetchFilm();
   }, [id]);
 
-    const { toggleFavorite, isFavorite } = useFavorites();
+  const { toggleFavorite, isFavorite } = useFavorites();
 
-  if (loading) return <p>Carregant pel·lícules...</p>;
+  if (loading) return <Loading />;
   if (error) return <div className="error-message">Error: {error}</div>;
-  if (!film) return <div>No s'ha trobat la pel·lícula'</div>;
+  if (!film) return <div>No s'ha trobat la pel·lícula</div>;
 
   return (
     <div className="film-detail">
       <div className="film-banner-wrap">
         <Link to="/" className="back" aria-label="Volver">
-           <img src={back} alt="Volver" className="back-icon" />
+          <img src={back} alt="Volver" className="back-icon" />
         </Link>
-
-        <button className="btn-fav" onClick={()=> toggleFavorite(film)}>
-             <img src={isFavorite(film.id) ? heartRed : heartWhite} alt="corazón" className="heart-icon"/>
-        </button>
+        <ButtonFav film={film} />
 
         <img src={film.movie_banner || film.image} alt={film.title} />
       </div>
@@ -82,7 +78,7 @@ function InfoFilm() {
 
         <p className="film-desc">{film.description}</p>
 
-        <div className="meta-group"><strong>Characters:</strong> {related.people.join(', ') || '—'}</div>
+        <div className="meta-group"><strong>Characters:</strong> {people.join(', ') || '—'}</div>
         <div className="meta-group"><strong>Director:</strong> {film.director}</div>
         <div className="meta-group"><strong>Producer:</strong> {film.producer}</div>
 
