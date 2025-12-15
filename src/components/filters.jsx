@@ -1,10 +1,9 @@
-// Filters.jsx
 import './filter.css';
 function Filters({ sortOption, setSortOption, SORT_OPTIONS }) {
   return (
     <select
-      value={sortOption || ""}
-      onChange={(e) => setSortOption(e.target.value)}
+      value={sortOption || ""} //opció activa en el desplegable
+      onChange={(e) => setSortOption(e.target.value)} //actualitza el valor de sortOption
       className="filter-select"
     >
       <option value="" disabled>Filters</option>

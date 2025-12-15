@@ -17,7 +17,7 @@
   font-size: 30px;
   transition: transform 0.15s ease, background-color 0.15s ease;
 }
-/* estado favorita */
+
 .fav-btn.is-fav {
   background:none;
   border-color: #ff9b9b;

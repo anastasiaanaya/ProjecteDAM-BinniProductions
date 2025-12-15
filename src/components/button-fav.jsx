@@ -2,11 +2,11 @@ import './button-fav.css';
 import { useFavorites } from '../context/FavoritesContext';
 
 function ButtonFav({ film }) {
-  // If no film provided, don't try to read film.id
+  // Si no hi ha pel·lícula, no es llegeix id
   if (!film) return null;
 
   const { favorites, toggleFavorite } = useFavorites();
-  const isFavorite = (id) => favorites.some(f => f.id === id);
+  const isFavorite = (id) => favorites.some(f => f.id === id); //.some comrpova si algun element a l'array compleix la condició
 
   return (
     <button
