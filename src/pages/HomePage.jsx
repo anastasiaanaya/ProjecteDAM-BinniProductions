@@ -4,11 +4,9 @@ import './HomePage.css';
 import Filters from '../components/filters';
 import ButtonFav from '../components/button-fav';
 import Loading from './Loading';  
-const durada = 3000; // duración mínima en ms (cámbialo)
+const durada = 1500; // duración mínima de càrrega en ms
 
 const API_URL = 'https://ghibliapi.vercel.app/films';
-
-// (mantén SORT_OPTIONS y sortFilms igual que en tu versión)
 
 const SORT_OPTIONS = {
   DATA_ASC: "dataAsc",
@@ -26,31 +24,28 @@ const sortFilms = (films, option) => {
         return Number(a.release_date) - Number(b.release_date);
       case SORT_OPTIONS.DATA_DESC:
         return Number(b.release_date) - Number(a.release_date);
-
       case SORT_OPTIONS.TEMPS_ASC:
         return Number(a.running_time) - Number(b.running_time);
       case SORT_OPTIONS.TEMPS_DESC:
         return Number(b.running_time) - Number(a.running_time);
-
       case SORT_OPTIONS.VALORACIO_ASC:
         return Number(a.rt_score) - Number(b.rt_score);
       case SORT_OPTIONS.VALORACIO_DESC:
         return Number(b.rt_score) - Number(a.rt_score);
-
       default:
         return 0;
     }
   });
 };
 
-function HomePage(setAppLoading) {
+function HomePage({setAppLoading}) {
   const [films, setFilms] = useState([]);
   const [sortOption, setSortOption] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Read search query from URL query param 'q' so searches are not persisted in context
   const location = useLocation();
+  // Llegeix la query de la URL (per exemple ?q=totoro)
   const searchQuery = new URLSearchParams(location.search).get('q') || '';
 
   useEffect(() => {
