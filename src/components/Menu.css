@@ -170,11 +170,13 @@
     padding: 0 12px 0 0;
     font-size: 16px;
     outline: none;
+    font-family: inherit;
     margin-top: 8px;
     background: transparent;
-    color: #5C694D;
+    color: #2f3528;
     white-space: nowrap;
 }
+
 
 .totoro-icon {
   position: absolute;
