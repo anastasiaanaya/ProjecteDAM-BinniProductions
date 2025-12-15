@@ -1,4 +1,4 @@
-# 🎬 Studio Ghibli Catalog App
+# 🎬 Kiki's library
 
 Aplicación que muestra un catálogo de películas del **Studio Ghibli**, utilizando datos obtenidos desde la **Ghibli API**.  
 El objetivo del proyecto es practicar el consumo de APIs, el renderizado de listas y la organización básica de una aplicación.
