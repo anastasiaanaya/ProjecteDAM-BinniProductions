@@ -1,5 +1,4 @@
 .header {
-  /*height: 100px;*/
   position: sticky;
   left: 0;
   top: 0;
@@ -21,7 +20,6 @@
   color: #FFFAF4;
   box-sizing: border-box;
   display: flex;
-
 }
 
 h1{
@@ -30,7 +28,6 @@ h1{
   font-size: 25px;
   line-height: 92%;
   margin: 0px;
-  
   margin-left: 2px;
   letter-spacing: 0.05em;
 }
@@ -42,13 +39,7 @@ h1{
   box-sizing: border-box;
 }
 
-.nmi-boto {
-  background-color: #F2EDDA;
-  border-radius: 8px;
-}
-
 /*logo */
-
 .img-ghibli{
 width: 29px;
 height: 52px;
