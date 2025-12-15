@@ -1,14 +1,18 @@
+/* Imports: contexto de favoritos, enrutado (Link, location, navigate) y estilos */
 import { useFavorites } from '../context/FavoritesContext';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Favourites.css';
 
 function FavoritesPage() {
+  /* Estado y hooks: favoritos desde el contexto, y hooks de ruta */
   const { favorites, toggleFavorite } = useFavorites();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
+  /* `q` es el término de búsqueda en la query string, normalizado */
   const q = (params.get('q') || '').toLowerCase().trim();
   const navigate = useNavigate();
 
+  /* Filtrado local: si hay búsqueda, filtra por título/original/director */
   const filtered = q
     ? (favorites || []).filter((film) => {
         const hay = `${film.title || ''} ${film.original_title || ''} ${film.director || ''}`.toLowerCase();
@@ -16,6 +20,7 @@ function FavoritesPage() {
       })
     : favorites || [];
 
+  /* Estado vacío: mostrar ilustración y mensaje si no hay favoritos guardados */
   if (!favorites || favorites.length === 0) {
     return (
       <div className="empty-fav">
@@ -26,6 +31,7 @@ function FavoritesPage() {
     );
   }
 
+  /* Si el filtro no da resultados, ofrecer buscar en todas las películas */
   if (filtered.length === 0) {
     const qRaw = params.get('q') || '';
     const encoded = encodeURIComponent(qRaw);
@@ -46,6 +52,7 @@ function FavoritesPage() {
     );
   }
 
+  /* Render: lista de favoritos en grid. Cada tarjeta muestra poster, título, meta y botón favorito */
   return (
     <div className="favorites-container">
       <div className="favorites-title">
@@ -63,6 +70,7 @@ function FavoritesPage() {
               aria-label={`View details for ${film.title}`}
             />
 
+            {/* Acciones de la tarjeta: botón para añadir/quitar favoritos */}
             <div className="film-actions">
                 <button
                   className="pill-toggle"
@@ -74,15 +82,16 @@ function FavoritesPage() {
                 </button>
             </div>     
             
-            {/* Link del poster */}
+            {/* Poster clickable (enlaza al detalle) */}
             <Link to={`/film/${film.id}`} className="poster-link">
               <img src={film.image} alt={film.title} className="film-poster" />
             </Link>
 
+            {/* Información textual: título original, título y metadatos */}
             <div className="film-info">
               <div className="film-original">{film.original_title}</div>
 
-              {/* Link del título */}
+              {/* Título (link visual) */}
               <Link to={`/film/${film.id}`} className="film-title">
                 {film.title}
               </Link>
