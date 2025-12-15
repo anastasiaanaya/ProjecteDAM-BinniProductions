@@ -39,7 +39,7 @@ function Menu() {
     }
   }, [location.search, location.pathname]);
 
-  // Eliminar búsqueda de la URL quan es mira detalls d'una pel·lícula
+  // Eliminar cerca de la URL quan es mira detalls d'una pel·lícula
   useEffect(() => {
     if (location.pathname.startsWith('/film')) {
       if (searchQuery) setSearchQuery('');

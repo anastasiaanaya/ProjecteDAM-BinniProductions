@@ -6,7 +6,7 @@ function Header({ sortOption, setSortOption, SORT_OPTIONS }) {
     <header className="header">    
       <section className="main-header">
 
-        {/* Logo + título clicables → vuelven a Home */}
+        {/* Logo + nombre clicables → vuelven a Home */}
         <Link to="/" className="logo-link">
           <div className="logo-ghibli">          
             <img
