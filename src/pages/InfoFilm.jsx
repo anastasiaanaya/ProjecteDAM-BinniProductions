@@ -71,7 +71,7 @@ function InfoFilm() {
         </div>
         
 
-        <img src={film.movie_banner || film.image} alt={film.title} />
+        <img className="film-banner" src={film.movie_banner || film.image} alt={film.title} />
       </div>
 
       <div className="film-content">
