@@ -12,7 +12,7 @@ function FavoritesPage() {
   const q = (params.get('q') || '').toLowerCase().trim();
   const navigate = useNavigate();
 
-  /* Filtrado local: si hay búsqueda, filtra por título/original/director */
+  /* Filtre al fer cerca en favourites */
   const filtered = q
     ? (favorites || []).filter((film) => {
         const hay = `${film.title || ''} ${film.original_title || ''} ${film.director || ''}`.toLowerCase();
@@ -31,7 +31,7 @@ function FavoritesPage() {
     );
   }
 
-  /* Si el filtro no da resultados, ofrecer buscar en todas las películas */
+  /* Si no hi ha resultats que coincideixin amb la cerca, donar la opció de buscar en totes les pel·lícules */
   if (filtered.length === 0) {
     const qRaw = params.get('q') || '';
     const encoded = encodeURIComponent(qRaw);
