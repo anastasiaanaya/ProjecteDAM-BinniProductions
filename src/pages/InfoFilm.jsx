@@ -2,7 +2,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './InfoFilm.css';
-import { useFavorites } from '../context/FavoritesContext';
 import ButtonFav from '../components/button-fav';
 import Loading from './Loading';
 import back from '../../public/back.svg';
@@ -60,7 +59,7 @@ function InfoFilm() {
 
     fetchFilm();
   }, [id]);
-  
+
   /* Estados de carga/errores: mostrar componentes apropiados */
   if (loading) return <Loading />;
   if (error) return <div className="error-message">Error: {error}</div>;
