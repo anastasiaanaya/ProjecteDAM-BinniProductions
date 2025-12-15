@@ -1,5 +1,5 @@
+/* Contenedor principal de favoritos: centrado, ancho máximo y padding */
 .favorites-container {
-  padding: 20px;
   border-radius: 6px;
   max-width: 700px;
   margin: 20px auto; 
@@ -12,6 +12,8 @@
   para asegurarse de que sigue habiendo un margen */
 }
 
+
+/* Encabezado de la sección: título y contador en columna */
 .favorites-title{
   display:flex;
   flex-direction: column;
@@ -19,12 +21,14 @@
   padding: 12px 12px 20px 4px;
 }
 
+/* Título principal (Your favorites) */
 .favorites-heading {
   font-size: 24px;
   color: #000000;
   margin: 0px;
 }
 
+/* Contador de favoritos guardados */
 .favorites-count {
   font-weight: 450;
   color: #5C694D;
@@ -36,6 +40,7 @@
   max-width: 24px;
 }
 
+/* Grid/lista de tarjetas: column layout por defecto */
 .favorites-grid {
   display: flex;
   flex-direction: column;
@@ -43,6 +48,7 @@
   width: 100%;
 }
 
+/* Tarjeta individual de película: layout horizontal con poster + info */
 .film-card {
   display: flex;
   gap: 14px;
@@ -54,7 +60,7 @@
   overflow: visible;
 }
 
-/* Link overlay que cubre toda la tarjeta */
+/* Enlace invisible que cubre la tarjeta para hacerla totalmente clickable */
 .card-link-overlay {
   position: absolute;
   top: 0;
@@ -65,6 +71,7 @@
   text-decoration: none;
 }
 
+/* Contenedor de acciones (botón favorito) posicionado encima de la tarjeta */
 .film-actions{
   position: absolute;
   top: 8px;
@@ -72,13 +79,14 @@
   z-index: 10; 
 }
 
-/* Esto asegura que el título y poster sigan estando por encima del overlay*/
+/* Asegura que poster y título estén por encima del overlay clickable */
 .poster-link, 
 .film-title {
   position: relative;
   z-index: 2; 
 }
 
+/* Imagen del póster: tamaño fijo, borde y sombra */
 .film-poster {
   width: 96px;
   height: 140px;
@@ -88,12 +96,14 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
+/* Contenedor de texto: título, original y metadatos */
 .film-info {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
+/* Label pequeño para título original (si se usa) */
 .original-label {
   font-size: 12px;
   color: #7b6b5e;
@@ -101,6 +111,7 @@
   letter-spacing: 1px;
 }
 
+/* Título de la película: estilo destacado y sin subrayado */
 .film-title {
   font-weight: 700;
   color: #1f1f1f;
@@ -109,12 +120,14 @@
   margin-bottom: 8px;
 }
 
+/* Línea con fecha, duración y puntuación */
 .film-meta {
   font-size: 13px;
   color: #333;
   margin-bottom: 10px;
 }
 
+/* Botón del corazón: estilo minimal y clickable */
 .pill-toggle {
   border: none;
   padding: 8px;
@@ -122,6 +135,7 @@
   cursor: pointer;
 }
 
+/* Utilidad para alinear elementos a la derecha (si se usa) */
 .film-right{
   display: flex;
   flex-direction: row-reverse;
@@ -129,6 +143,7 @@
   gap: 16px;
 }
 
+/* Botón de búsqueda circular (icono) */
 .search-btn {
   display: inline-flex;
   align-items: center;
@@ -142,12 +157,14 @@
   font-size: 16px;
 }
 
+/* Estado cuando no hay favoritos guardados: centrado y espacioso */
 .empty-fav {
   text-align: center;
   margin-top: 50px;
   padding: 20px;
 }
 
+/* Estado cuando la búsqueda no devuelve resultados */
 .empty-fav-search{
   text-align: center;
   margin-top: 50px;
@@ -155,6 +172,7 @@
   font-size: 20px;
 }
 
+/* Estilo del botón para buscar en todas las películas */
 .no-results-actions .search-all {
   background: #5C694D;
   color: #ffffff;
@@ -166,6 +184,7 @@
   cursor: pointer;
 }
 
+/* Enlace de vuelta (botón) estilizado como texto */
 .btn-back {
   display: inline-block;
   margin-top: 12px;
