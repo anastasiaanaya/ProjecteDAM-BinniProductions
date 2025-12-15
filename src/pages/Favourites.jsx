@@ -22,10 +22,10 @@ function FavoritesPage() {
         <img src="/NoFavPonyo.svg" alt="Ponyo surprised" className="img-ponyo"/>
         <h2>No saved favorites yet</h2>
         <p>Go back to the Home Page to save your favorite movies by taping the heart!</p>
-       
       </div>
     );
   }
+
   if (filtered.length === 0) {
     const qRaw = params.get('q') || '';
     const encoded = encodeURIComponent(qRaw);
@@ -53,10 +53,18 @@ function FavoritesPage() {
         <p className="favorites-count">{filtered.length} saved movies</p>
       </div>
       
-
       <div className="favorites-grid">
         {filtered.map((film) => (
           <article key={film.id} className="film-card">
+            
+            {/* --- LINK OVERLAY --- 
+                Este es el Link "mágico" que cubre toda la tarjeta.
+                Gracias al CSS, ocupa el 100% del espacio. */}
+            <Link 
+              to={`/film/${film.id}`} 
+              className="card-link-overlay" 
+              aria-label={`View details for ${film.title}`}
+            />
 
             <div className="film-actions">
                 <button
@@ -65,22 +73,19 @@ function FavoritesPage() {
                   aria-label="Treure dels favorits"
                   title="Treure dels favorits"
                 >
-                  <img src="/HeartRed.svg"/>
+                  <img src="/HeartRed.svg" alt="Heart"/>
                 </button>
-
-                
-              </div>     
+            </div>     
             
+            {/* Link del poster (Mantenido) */}
             <Link to={`/film/${film.id}`} className="poster-link">
               <img src={film.image} alt={film.title} className="film-poster" />
             </Link>
 
-                  
-
             <div className="film-info">
               <div className="film-original">{film.original_title}</div>
 
-
+              {/* Link del título (Mantenido) */}
               <Link to={`/film/${film.id}`} className="film-title">
                 {film.title}
               </Link>
@@ -88,8 +93,7 @@ function FavoritesPage() {
               <div className="film-meta">
                 {film.release_date} | {film.running_time}' | ★ {film.rt_score}
               </div>
-
-              </div>
+            </div>
 
           </article>
         ))}

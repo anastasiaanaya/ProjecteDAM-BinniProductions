@@ -1,11 +1,10 @@
-
 .favorites-container {
   padding: 20px;
   border-radius: 6px;
   max-width: 700px;
   margin: 20px auto; 
   box-sizing: border-box;
-  width: calc(100% - 40px); /* amb això ens asegurem qeu hi hagi padding encara que la pantalla sigui molt petita */
+  width: calc(100% - 40px);
 }
 
 .favorites-title{
@@ -32,7 +31,6 @@
   max-width: 24px;
 }
 
-/* El layout de la lista */
 .favorites-grid {
   display: flex;
   flex-direction: column;
@@ -40,16 +38,46 @@
   width: 100%;
 }
 
-/* Individual film card */
 .film-card {
   display: flex;
   gap: 14px;
   align-items: center;
-  background: #f4f0e7; /* abans era #efe9d9*/
+  background: #f4f0e7;
   padding: 12px;
   border-radius: 8px;
-  position: relative;
+  position: relative; 
   overflow: visible;
+}
+
+.film-card:hover {
+  /* ESTO ES LO QUE HAY QUE BORRAR ES EL EFECTO DEL RATON */
+  background: #eae3d2;
+}
+
+/* --- NUEVA CLASE: EL LINK QUE CUBRE TODO --- */
+.card-link-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Capa 1: Cubre el fondo */
+  text-decoration: none;
+}
+
+.film-actions{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10; /* Capa 10 para que este muy por encima del link overlay */
+}
+
+/* --- CAMBIO: Capa media para tus links existentes --- */
+/* Esto asegura que el título y poster sigan estando 'arriba' del overlay*/
+.poster-link, 
+.film-title {
+  position: relative;
+  z-index: 2; 
 }
 
 .film-poster {
@@ -88,15 +116,11 @@
   margin-bottom: 10px;
 }
 
-.film-actions{
-  position:absolute;
-  top:8px;
-  right:8px;
-}
 .pill-toggle {
   border: none;
   padding: 8px;
   background: none;
+  cursor: pointer;
 }
 
 .film-right{
@@ -150,10 +174,9 @@
   color: #2b2b2b;
 }
 
-/* Versió desktop, centrem la info a la pantalla */
 @media (min-width: 900px) {
   .favorites-container {
-    max-width: 900px; /* fem que la info sigui una mica més gran  */
+    max-width: 900px; 
     padding: 28px 28px;
   }
 
