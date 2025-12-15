@@ -57,7 +57,7 @@ function FavoritesPage() {
         {filtered.map((film) => (
           <article key={film.id} className="film-card">
             
-            {/* --- LINK OVERLAY ---
+            {/* Link para que toda la tarjeta sea clickable.
                 Gracias al CSS, ocupa el 100% del espacio. */}
             <Link to={`/film/${film.id}`} className="card-link-overlay" 
               aria-label={`View details for ${film.title}`}

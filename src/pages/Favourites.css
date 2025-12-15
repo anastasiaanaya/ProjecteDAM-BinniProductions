@@ -5,6 +5,11 @@
   margin: 20px auto; 
   box-sizing: border-box;
   width: calc(100% - 40px);
+  /* Resta 40px al ancho total para dejar un margen de seguridad a 
+  los lados y que no pegue a los bordes */
+  /* sirve para que cuando la pantalla sea muy pequeña aun asi
+  haya un calculo del 100% de esta pantalla y le resta los pixeles
+  para asegurarse de que sigue habiendo un margen */
 }
 
 .favorites-title{
@@ -49,19 +54,14 @@
   overflow: visible;
 }
 
-.film-card:hover {
-  /* ESTO ES LO QUE HAY QUE BORRAR ES EL EFECTO DEL RATON */
-  background: #eae3d2;
-}
-
-/* --- NUEVA CLASE: EL LINK QUE CUBRE TODO --- */
+/* Link overlay que cubre toda la tarjeta */
 .card-link-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1; /* Capa 1: Cubre el fondo */
+  z-index: 1; /* El zindex es para indicar que capa esta por encima de cual*/
   text-decoration: none;
 }
 
@@ -69,10 +69,10 @@
   position: absolute;
   top: 8px;
   right: 8px;
-  z-index: 10; /* Capa 10 para que este muy por encima del link overlay */
+  z-index: 10; 
 }
 
-/* Esto asegura que el título y poster sigan estando 'arriba' del overlay*/
+/* Esto asegura que el título y poster sigan estando por encima del overlay*/
 .poster-link, 
 .film-title {
   position: relative;
