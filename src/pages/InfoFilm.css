@@ -117,7 +117,7 @@
   object-fit: contain;
 }
 
-/* Mensaje de error: colores para destacar (fondo y borde rojo) */
+/*estil del missatge d'error en pantalla*/
 .error {
   color: #D8000C;
   background-color: #FFD2D2;
@@ -126,15 +126,16 @@
   border-radius: 8px;
 }
 
-/* Ajuste adicional para la imagen del banner (puede ampliar su alto) */
+/* Ajuste adicional para la imagen del banner (porque este centrada) */
 .film-banner{
   height: 130%;
 }
+
+
 /* Media query: pantallas >= 600px — ajustar tamaños del póster y fondo */
 @media (min-width: 600px) {
-
-  .poster-wrap img { max-width: 320px; width: 48%; }}
-  .film-detail { background-color:#F2EDDA }
+  .poster-wrap img { max-width: 320px; width: 48%; }
+  .film-detail { background-color:#F2EDDA }}
 
 /* Media query: pantallas >= 900px — centrar la tarjeta y aumentar tamaños */
 @media (min-width: 900px) {
@@ -149,5 +150,4 @@
     height: 276px;
     width: 951px; }
   .film-name { font-size: 34px; }
-  .floating-actions { left: calc(50% - 420px); }
 }
