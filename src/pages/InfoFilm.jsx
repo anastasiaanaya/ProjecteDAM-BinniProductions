@@ -60,10 +60,7 @@ function InfoFilm() {
 
     fetchFilm();
   }, [id]);
-
-  /* Funciones del contexto de favoritos (toggle + consulta) */
-  const { toggleFavorite, isFavorite } = useFavorites();
-
+  
   /* Estados de carga/errores: mostrar componentes apropiados */
   if (loading) return <Loading />;
   if (error) return <div className="error-message">Error: {error}</div>;

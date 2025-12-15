@@ -6,7 +6,7 @@ function ButtonFav({ film }) {
   if (!film) return null;
 
   const { favorites, toggleFavorite } = useFavorites();
-  const isFavorite = (id) => favorites.some(f => f.id === id); //.some comrpova si algun element a l'array compleix la condició
+  const isFavorite = (id) => favorites.some(f => f.id === id); //.some comprova si algun element a l'array compleix la condició
 
   return (
     <button
