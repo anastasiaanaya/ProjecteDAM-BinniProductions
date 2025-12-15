@@ -1,3 +1,4 @@
+/* Contenedor principal de la página de detalle: fondo, centrado vertical y horizontal, tipografía base */
 .film-detail {
   background: #f4f0e7;
   display: flex;
@@ -9,6 +10,7 @@
   line-height: 1.45;
 }
 
+/* Contenedor del banner superior: mantiene la imagen recortada y con overflow oculto */
 .film-banner-wrap {
   position: relative;
   width: 100%;
@@ -16,6 +18,7 @@
   overflow: hidden;
   background: #000;
 }
+/* Imagen del banner: ocupa todo el ancho y se recorta vía object-fit */
 .film-banner-wrap img {
   width: 100%;
   object-fit: cover;
@@ -23,6 +26,7 @@
   -webkit-user-drag: none;
 }
 
+/* Botón 'volver' flotante sobre el banner: tamaño y centrado interno */
 .back {
   position: absolute;
   width: 60px;
@@ -37,10 +41,12 @@
   padding:16px;
 }
 
+/* Espaciado para el botón favorito (utilizado como wrapper) */
 .button-fav{
   padding:16px;
 }
 
+/* Tarjeta principal de contenido: fondo claro, bordes redondeados y sombra sutil */
 .film-content {
   background: #F2EDDA;
   border-radius: 18px 18px 0 0;
@@ -50,6 +56,7 @@
   background: #f4f0e7;
 }
 
+/* Texto del título original / subtítulo pequeño */
 .film-original {
   font-size: 12px;
   color: #6b6b6b;
@@ -58,6 +65,7 @@
   opacity: 0.95;
 }
 
+/* Título principal de la película */
 .film-name {
   font-size: 26px;
   font-weight: 700;
@@ -65,6 +73,7 @@
   letter-spacing: -0.2px;
 }
 
+/* Línea de datos (director, país, etc.) con estilo secundario */
 .film-data {
   color: #6b6b6b;
   font-weight: 600;
@@ -72,29 +81,34 @@
   margin-bottom: 12px;
 }
 
+/* Descripción / sinopsis de la película */
 .film-desc {
   color: #111214;
   font-size: 15px;
   margin-bottom: 16px;
 }
 
+/* Grupo de metadatos (etiquetas/valores) */
 .meta-group {
   margin-bottom: 14px;
   font-size: 15px;
   color: #111214;
 }
+/* Estilo para etiquetas en negrita dentro de meta-group */
 .meta-group strong {
   display: inline-block;
   color: #111214;
   font-weight: 700;
 }
 
+/* Contenedor centrado del póster de la película */
 .poster-wrap {
   display: flex;
   justify-content: center;
   margin-top: 18px;
   margin-bottom: 42px;
 }
+/* Imagen del póster: tamaño responsivo, sombra y borde redondeado */
 .poster-wrap img {
   width: 60%;
   max-width: 240px;
@@ -103,6 +117,7 @@
   object-fit: contain;
 }
 
+/* Mensaje de error: colores para destacar (fondo y borde rojo) */
 .error {
   color: #D8000C;
   background-color: #FFD2D2;
@@ -111,14 +126,17 @@
   border-radius: 8px;
 }
 
+/* Ajuste adicional para la imagen del banner (puede ampliar su alto) */
 .film-banner{
   height: 130%;
 }
+/* Media query: pantallas >= 600px — ajustar tamaños del póster y fondo */
 @media (min-width: 600px) {
 
   .poster-wrap img { max-width: 320px; width: 48%; }}
   .film-detail { background-color:#F2EDDA }
 
+/* Media query: pantallas >= 900px — centrar la tarjeta y aumentar tamaños */
 @media (min-width: 900px) {
   .film-content {
     max-width: 880px;
