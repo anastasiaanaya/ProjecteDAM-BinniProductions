@@ -57,12 +57,9 @@ function FavoritesPage() {
         {filtered.map((film) => (
           <article key={film.id} className="film-card">
             
-            {/* --- LINK OVERLAY --- 
-                Este es el Link "mágico" que cubre toda la tarjeta.
+            {/* --- LINK OVERLAY ---
                 Gracias al CSS, ocupa el 100% del espacio. */}
-            <Link 
-              to={`/film/${film.id}`} 
-              className="card-link-overlay" 
+            <Link to={`/film/${film.id}`} className="card-link-overlay" 
               aria-label={`View details for ${film.title}`}
             />
 
@@ -77,7 +74,7 @@ function FavoritesPage() {
                 </button>
             </div>     
             
-            {/* Link del poster (Mantenido) */}
+            {/* Link del poster */}
             <Link to={`/film/${film.id}`} className="poster-link">
               <img src={film.image} alt={film.title} className="film-poster" />
             </Link>
@@ -85,7 +82,7 @@ function FavoritesPage() {
             <div className="film-info">
               <div className="film-original">{film.original_title}</div>
 
-              {/* Link del título (Mantenido) */}
+              {/* Link del título */}
               <Link to={`/film/${film.id}`} className="film-title">
                 {film.title}
               </Link>

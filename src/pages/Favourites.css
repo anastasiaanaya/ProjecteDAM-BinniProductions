@@ -72,7 +72,6 @@
   z-index: 10; /* Capa 10 para que este muy por encima del link overlay */
 }
 
-/* --- CAMBIO: Capa media para tus links existentes --- */
 /* Esto asegura que el título y poster sigan estando 'arriba' del overlay*/
 .poster-link, 
 .film-title {
