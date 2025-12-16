@@ -40,7 +40,7 @@ function InfoFilm() {
                 continue;
               }
               const j = await r.json();
-              out.push(j.name || j.title || j.url || 'sin nombre');
+              out.push(j.name || j.title || j.url || 'no characters registered');
             } catch {
               out.push(u);
             }
