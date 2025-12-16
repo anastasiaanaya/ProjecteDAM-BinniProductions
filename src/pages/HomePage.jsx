@@ -84,11 +84,10 @@ function HomePage({setAppLoading}) {
   if (loading) return <Loading />;
   if (error) return <div className="error-message">Error: {error}</div>;
 
+  // Converteix la cerca a minúscules i treu espais innecessaris
   const normalizedQuery = (searchQuery || '').trim().toLowerCase();
-
   const filteredFilms = normalizedQuery
     ? films.filter(f => {
-        // Buscamos en título, director, productor y año
         return (
           (f.title || '').toLowerCase().includes(normalizedQuery) ||
           (f.director || '').toLowerCase().includes(normalizedQuery) ||
@@ -110,6 +109,7 @@ function HomePage({setAppLoading}) {
         />
       </div>
 
+      {/* Condicional que mostra missatge que no hi ha resultats o bé les pel·lícules si hi ha resultats disponibles*/}
       <div className="films-grid">
         {sortedFilms.length === 0 && normalizedQuery ? (
           <div className="no-results">
@@ -122,7 +122,6 @@ function HomePage({setAppLoading}) {
               <Link to={`/film/${film.id}`}>
                 <img src={film.image} alt={film.title} className="film-image" />
               </Link>
-              {/* Botón favorito flotante */}
               <ButtonFav film={film} />
             </article>
           ))
