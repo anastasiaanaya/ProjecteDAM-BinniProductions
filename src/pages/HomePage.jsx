@@ -84,8 +84,8 @@ function HomePage({setAppLoading}) {
   if (loading) return <Loading />;
   if (error) return <div className="error-message">Error: {error}</div>;
 
+  // Converteix la cerca a minúscules i treu espais innecessaris
   const normalizedQuery = (searchQuery || '').trim().toLowerCase();
-
   const filteredFilms = normalizedQuery
     ? films.filter(f => {
         return (
