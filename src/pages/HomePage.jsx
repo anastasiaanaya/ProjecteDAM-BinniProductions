@@ -88,7 +88,6 @@ function HomePage({setAppLoading}) {
 
   const filteredFilms = normalizedQuery
     ? films.filter(f => {
-        // Buscamos en título, director, productor y año
         return (
           (f.title || '').toLowerCase().includes(normalizedQuery) ||
           (f.director || '').toLowerCase().includes(normalizedQuery) ||
