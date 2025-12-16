@@ -1,7 +1,7 @@
 import './Header.css';
 import { Link } from 'react-router-dom';
 
-function Header({ sortOption, setSortOption, SORT_OPTIONS }) {
+function Header() {
   return (
     <header className="header">    
       <section className="main-header">
